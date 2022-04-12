@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,11 +9,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Windows.Devices.Bluetooth;
+using Windows.Devices.Bluetooth.GenericAttributeProfile;
 
 namespace SmartValve2Control
 {
     public partial class SmartValveControl : Form
     {
+        private BleControl blectl;
+
         public SmartValveControl()
         {
             InitializeComponent();
@@ -22,7 +27,7 @@ namespace SmartValve2Control
             comboBoxByteSize.SelectedIndex = 4;
             comboBoxParity.SelectedIndex = 0;
 
-            serialPort.Encoding = Encoding.GetEncoding("GB2312");  // 设置串口的编码
+            serialPort.Encoding = Encoding.GetEncoding("gb2312");  // 设置串口的编码
             Control.CheckForIllegalCrossThreadCalls = false;  // 忽略多线程
         }
 
@@ -53,7 +58,9 @@ namespace SmartValve2Control
 
         private void SmartValveControl_Load(object sender, EventArgs e)
         {
+            Console.SetOut(new TextBoxWriter(richTextBoxState));
             SearchCompleteSerial(serialPort, comboBoxCom);
+            blectl = new BleControl(this);
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -203,6 +210,153 @@ namespace SmartValve2Control
         private void checkBoxShowTime_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(buttonBleSearch.Text == "Search")
+            {
+                comboBoxBleDevice.Items.Clear();
+                blectl.BleSearch(true);
+                buttonBleSearch.Text = "Stop";
+            }
+            else if(buttonBleSearch.Text == "Stop")
+            {
+                blectl.BleSearch(false);
+                buttonBleSearch.Text = "Search";
+            }
+            
+        }
+
+        public void BleItemAdd(string name)
+        {
+            /* 先清空端口下拉列表 */
+            //comboBoxBleDevice.Items.Clear();
+            //for (int i = 0; i < mystring.Length; i++)
+            comboBoxBleDevice.Items.Add(name); // 往下拉列表中添加端口号
+
+            comboBoxBleDevice.SelectedIndex = 0; // 默认选中的是第一个端口（小的端口）
+        }
+
+    }
+
+    public class TextBoxWriter : System.IO.TextWriter
+    {
+        RichTextBox richBox;
+        delegate void VoidAction();
+
+        public TextBoxWriter(RichTextBox box)
+        {
+            richBox = box;
+        }
+
+        public override void Write(string value)
+        {
+            VoidAction action = delegate
+            {
+                richBox.AppendText(DateTime.Now.ToString("[yyyy-MM-dd HH:mm:ss]") + value);
+            };
+            richBox.BeginInvoke(action);
+        }
+
+        public override void WriteLine(string value)
+        {
+            VoidAction action = delegate
+            {
+                richBox.AppendText(DateTime.Now.ToString("[yyyy-MM-dd HH:mm:ss]") + value + "\r\n");
+            };
+            richBox.BeginInvoke(action);
+        }
+
+        public override System.Text.Encoding Encoding
+        {
+            get { return System.Text.Encoding.UTF8; }
+        }
+    }
+
+    public class BleControl
+    {
+        private static SmartValveControl smartValve2control;
+        private static BleCore bleCore = null;
+        delegate void VoidAction();
+        private static ArrayList bledevice;
+        int item = 0;
+
+        public BleControl(SmartValveControl svc)
+        {
+            smartValve2control = svc;
+            bleCore = new BleCore();
+            bledevice = new ArrayList();
+            bleCore.DeviceWatcherChanged += DeviceWatcherChanged;
+            bleCore.CharacteristicAdded += CharacteristicAdded;
+            bleCore.CharacteristicFinish += CharacteristicFinish;
+            bleCore.Recdate += Recdata;
+        }
+
+        private static List<GattCharacteristic> characteristics = new List<GattCharacteristic>();
+
+        public void BleSearch(bool onoff)
+        {
+            if(onoff)
+            {
+                bleCore.StartBleDeviceWatcher();
+            }
+            else
+            {
+                bleCore.Dispose();
+                //bleCore = null;
+            }
+        }
+
+        private static void printString(string info)
+        {
+            smartValve2control.state_printf(info, Color.Black);
+        }
+
+        private static void CharacteristicFinish(int size)
+        {
+            if (size <= 0)
+            {
+                Console.WriteLine("设备未连上");
+                return;
+            }
+        }
+
+        private static void Recdata(GattCharacteristic sender, byte[] data)
+        {
+            string str = BitConverter.ToString(data);
+            Console.WriteLine(sender.Uuid + "             " + str);
+        }
+
+        private static void CharacteristicAdded(GattCharacteristic gatt)
+        {
+            Console.WriteLine(
+                "handle:[0x{0}]  char properties:[{1}]  UUID:[{2}]",
+                gatt.AttributeHandle.ToString("X4"),
+                gatt.CharacteristicProperties.ToString(),
+                gatt.Uuid);
+
+            characteristics.Add(gatt);
+        }
+
+        private static void DeviceWatcherChanged(BluetoothLEDevice currentDevice)
+        {
+            byte[] _Bytes1 = BitConverter.GetBytes(currentDevice.BluetoothAddress);
+            Array.Reverse(_Bytes1);
+            string address = BitConverter.ToString(_Bytes1, 2, 6).Replace('-', ':').ToLower();
+            Console.WriteLine("发现设备：<" + currentDevice.Name + ">  address:<" + address + ">");
+            bledevice.Add(currentDevice);
+            smartValve2control.BleItemAdd(currentDevice.Name);
+            //指定一个对象，使用下面方法去连接设备
+            //ConnectDevice(currentDevice);
+        }
+
+        private static void ConnectDevice(BluetoothLEDevice Device)
+        {
+            characteristics.Clear();
+            bleCore.StopBleDeviceWatcher();
+            bleCore.StartMatching(Device);
+            bleCore.FindService();
         }
     }
 }

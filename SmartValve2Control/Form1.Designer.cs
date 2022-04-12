@@ -30,12 +30,38 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.buttonConnect = new System.Windows.Forms.Button();
+            this.buttonBleSearch = new System.Windows.Forms.Button();
+            this.comboBoxBleDevice = new System.Windows.Forms.ComboBox();
+            this.labelBle = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.richTextBoxState = new System.Windows.Forms.RichTextBox();
-            this.richTextBoxMessage = new System.Windows.Forms.RichTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.buttonClear = new System.Windows.Forms.Button();
             this.checkBoxShowTime = new System.Windows.Forms.CheckBox();
+            this.groupBoxCom = new System.Windows.Forms.GroupBox();
+            this.buttonOpenCom = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBoxFlowControl = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBoxByteSize = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBoxParity = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBoxStopBit = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBoxBaudRate = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxCom = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.serialPort = new System.IO.Ports.SerialPort(this.components);
+            this.openFileDialogLog = new System.Windows.Forms.OpenFileDialog();
+            this.checkBoxSaveLog = new System.Windows.Forms.CheckBox();
+            this.textBoxLogPath = new System.Windows.Forms.TextBox();
+            this.richTextBoxState = new System.Windows.Forms.RichTextBox();
+            this.buttonLog = new System.Windows.Forms.Button();
+            this.richTextBoxMessage = new System.Windows.Forms.RichTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonCmd22 = new System.Windows.Forms.Button();
             this.textBoxCmd22 = new System.Windows.Forms.TextBox();
@@ -103,95 +129,98 @@
             this.buttonCmd1 = new System.Windows.Forms.Button();
             this.textBoxCmd1 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.groupBoxCom = new System.Windows.Forms.GroupBox();
-            this.buttonOpenCom = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comboBoxFlowControl = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.comboBoxByteSize = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBoxParity = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboBoxStopBit = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBoxBaudRate = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBoxCom = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.serialPort = new System.IO.Ports.SerialPort(this.components);
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.labelBle = new System.Windows.Forms.Label();
-            this.comboBoxBleDevice = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.openFileDialogLog = new System.Windows.Forms.OpenFileDialog();
-            this.buttonLog = new System.Windows.Forms.Button();
-            this.textBoxLogPath = new System.Windows.Forms.TextBox();
-            this.checkBoxSaveLog = new System.Windows.Forms.CheckBox();
             this.tabPage2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBoxCom.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.richTextBox1);
             this.tabPage2.Controls.Add(this.groupBox3);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1080, 843);
+            this.tabPage2.Size = new System.Drawing.Size(1080, 116);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "BLE";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.buttonConnect);
+            this.groupBox3.Controls.Add(this.buttonBleSearch);
+            this.groupBox3.Controls.Add(this.comboBoxBleDevice);
+            this.groupBox3.Controls.Add(this.labelBle);
+            this.groupBox3.Location = new System.Drawing.Point(6, 6);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(1068, 97);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Ble Control Setting";
+            // 
+            // buttonConnect
+            // 
+            this.buttonConnect.Location = new System.Drawing.Point(446, 22);
+            this.buttonConnect.Name = "buttonConnect";
+            this.buttonConnect.Size = new System.Drawing.Size(75, 23);
+            this.buttonConnect.TabIndex = 3;
+            this.buttonConnect.Text = "Connect";
+            this.buttonConnect.UseVisualStyleBackColor = true;
+            // 
+            // buttonBleSearch
+            // 
+            this.buttonBleSearch.Location = new System.Drawing.Point(354, 22);
+            this.buttonBleSearch.Name = "buttonBleSearch";
+            this.buttonBleSearch.Size = new System.Drawing.Size(75, 23);
+            this.buttonBleSearch.TabIndex = 2;
+            this.buttonBleSearch.Text = "Search";
+            this.buttonBleSearch.UseVisualStyleBackColor = true;
+            this.buttonBleSearch.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // comboBoxBleDevice
+            // 
+            this.comboBoxBleDevice.FormattingEnabled = true;
+            this.comboBoxBleDevice.Location = new System.Drawing.Point(108, 22);
+            this.comboBoxBleDevice.Name = "comboBoxBleDevice";
+            this.comboBoxBleDevice.Size = new System.Drawing.Size(230, 23);
+            this.comboBoxBleDevice.TabIndex = 1;
+            // 
+            // labelBle
+            // 
+            this.labelBle.AutoSize = true;
+            this.labelBle.Location = new System.Drawing.Point(7, 25);
+            this.labelBle.Name = "labelBle";
+            this.labelBle.Size = new System.Drawing.Size(95, 15);
+            this.labelBle.TabIndex = 0;
+            this.labelBle.Text = "Ble Device:";
+            // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.checkBoxSaveLog);
-            this.tabPage1.Controls.Add(this.textBoxLogPath);
-            this.tabPage1.Controls.Add(this.richTextBoxState);
-            this.tabPage1.Controls.Add(this.buttonLog);
-            this.tabPage1.Controls.Add(this.richTextBoxMessage);
             this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.groupBoxCom);
             this.tabPage1.Controls.Add(this.comboBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1080, 879);
+            this.tabPage1.Size = new System.Drawing.Size(1080, 112);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "COM";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // richTextBoxState
-            // 
-            this.richTextBoxState.Location = new System.Drawing.Point(10, 768);
-            this.richTextBoxState.Name = "richTextBoxState";
-            this.richTextBoxState.Size = new System.Drawing.Size(559, 66);
-            this.richTextBoxState.TabIndex = 10;
-            this.richTextBoxState.Text = "";
-            // 
-            // richTextBoxMessage
-            // 
-            this.richTextBoxMessage.Location = new System.Drawing.Point(10, 124);
-            this.richTextBoxMessage.Name = "richTextBoxMessage";
-            this.richTextBoxMessage.Size = new System.Drawing.Size(559, 640);
-            this.richTextBoxMessage.TabIndex = 9;
-            this.richTextBoxMessage.Text = "";
-            // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.buttonClear);
             this.groupBox2.Controls.Add(this.checkBoxShowTime);
             this.groupBox2.Location = new System.Drawing.Point(793, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(271, 103);
+            this.groupBox2.Size = new System.Drawing.Size(271, 99);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Operation";
@@ -217,8 +246,246 @@
             this.checkBoxShowTime.UseVisualStyleBackColor = true;
             this.checkBoxShowTime.CheckedChanged += new System.EventHandler(this.checkBoxShowTime_CheckedChanged);
             // 
+            // groupBoxCom
+            // 
+            this.groupBoxCom.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxCom.Controls.Add(this.buttonOpenCom);
+            this.groupBoxCom.Controls.Add(this.label6);
+            this.groupBoxCom.Controls.Add(this.comboBoxFlowControl);
+            this.groupBoxCom.Controls.Add(this.label5);
+            this.groupBoxCom.Controls.Add(this.comboBoxByteSize);
+            this.groupBoxCom.Controls.Add(this.label4);
+            this.groupBoxCom.Controls.Add(this.comboBoxParity);
+            this.groupBoxCom.Controls.Add(this.label3);
+            this.groupBoxCom.Controls.Add(this.comboBoxStopBit);
+            this.groupBoxCom.Controls.Add(this.label2);
+            this.groupBoxCom.Controls.Add(this.comboBoxBaudRate);
+            this.groupBoxCom.Controls.Add(this.label1);
+            this.groupBoxCom.Controls.Add(this.comboBoxCom);
+            this.groupBoxCom.Location = new System.Drawing.Point(10, 6);
+            this.groupBoxCom.Name = "groupBoxCom";
+            this.groupBoxCom.Size = new System.Drawing.Size(776, 99);
+            this.groupBoxCom.TabIndex = 3;
+            this.groupBoxCom.TabStop = false;
+            this.groupBoxCom.Text = "COM Port Setting";
+            this.groupBoxCom.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // buttonOpenCom
+            // 
+            this.buttonOpenCom.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonOpenCom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonOpenCom.Location = new System.Drawing.Point(685, 59);
+            this.buttonOpenCom.Name = "buttonOpenCom";
+            this.buttonOpenCom.Size = new System.Drawing.Size(80, 28);
+            this.buttonOpenCom.TabIndex = 12;
+            this.buttonOpenCom.Text = "Open";
+            this.buttonOpenCom.UseVisualStyleBackColor = false;
+            this.buttonOpenCom.Click += new System.EventHandler(this.buttonOpenCom_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(196, 62);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(111, 15);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Flow Control:";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // comboBoxFlowControl
+            // 
+            this.comboBoxFlowControl.FormattingEnabled = true;
+            this.comboBoxFlowControl.Items.AddRange(new object[] {
+            "No Control",
+            "SW Control",
+            "HW Control"});
+            this.comboBoxFlowControl.Location = new System.Drawing.Point(313, 59);
+            this.comboBoxFlowControl.Name = "comboBoxFlowControl";
+            this.comboBoxFlowControl.Size = new System.Drawing.Size(181, 23);
+            this.comboBoxFlowControl.TabIndex = 10;
+            this.comboBoxFlowControl.SelectedIndexChanged += new System.EventHandler(this.comboBox7_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 62);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(79, 15);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "ByteSize:";
+            // 
+            // comboBoxByteSize
+            // 
+            this.comboBoxByteSize.FormattingEnabled = true;
+            this.comboBoxByteSize.Items.AddRange(new object[] {
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"});
+            this.comboBoxByteSize.Location = new System.Drawing.Point(87, 59);
+            this.comboBoxByteSize.Name = "comboBoxByteSize";
+            this.comboBoxByteSize.Size = new System.Drawing.Size(80, 23);
+            this.comboBoxByteSize.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(605, 33);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 15);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Parity:";
+            // 
+            // comboBoxParity
+            // 
+            this.comboBoxParity.FormattingEnabled = true;
+            this.comboBoxParity.Items.AddRange(new object[] {
+            "None",
+            "Odd",
+            "Even"});
+            this.comboBoxParity.Location = new System.Drawing.Point(685, 30);
+            this.comboBoxParity.Name = "comboBoxParity";
+            this.comboBoxParity.Size = new System.Drawing.Size(80, 23);
+            this.comboBoxParity.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(415, 33);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 15);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "StopBits:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // comboBoxStopBit
+            // 
+            this.comboBoxStopBit.FormattingEnabled = true;
+            this.comboBoxStopBit.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "1.5",
+            "2"});
+            this.comboBoxStopBit.Location = new System.Drawing.Point(495, 30);
+            this.comboBoxStopBit.Name = "comboBoxStopBit";
+            this.comboBoxStopBit.Size = new System.Drawing.Size(80, 23);
+            this.comboBoxStopBit.TabIndex = 4;
+            this.comboBoxStopBit.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(196, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(79, 15);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "BaudRate:";
+            // 
+            // comboBoxBaudRate
+            // 
+            this.comboBoxBaudRate.FormattingEnabled = true;
+            this.comboBoxBaudRate.Items.AddRange(new object[] {
+            "9600",
+            "19200",
+            "38400",
+            "57600",
+            "115200"});
+            this.comboBoxBaudRate.Location = new System.Drawing.Point(276, 30);
+            this.comboBoxBaudRate.Name = "comboBoxBaudRate";
+            this.comboBoxBaudRate.Size = new System.Drawing.Size(92, 23);
+            this.comboBoxBaudRate.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 15);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "COM Port:";
+            // 
+            // comboBoxCom
+            // 
+            this.comboBoxCom.FormattingEnabled = true;
+            this.comboBoxCom.Location = new System.Drawing.Point(87, 30);
+            this.comboBoxCom.Name = "comboBoxCom";
+            this.comboBoxCom.Size = new System.Drawing.Size(80, 23);
+            this.comboBoxCom.TabIndex = 0;
+            this.comboBoxCom.SelectedIndexChanged += new System.EventHandler(this.comboBoxCom_SelectedIndexChanged);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(69, 6);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(133, 23);
+            this.comboBox1.TabIndex = 2;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1088, 141);
+            this.tabControl1.TabIndex = 1;
+            // 
+            // openFileDialogLog
+            // 
+            this.openFileDialogLog.FileName = "openFileDialogLog";
+            // 
+            // checkBoxSaveLog
+            // 
+            this.checkBoxSaveLog.AutoSize = true;
+            this.checkBoxSaveLog.Location = new System.Drawing.Point(512, 837);
+            this.checkBoxSaveLog.Name = "checkBoxSaveLog";
+            this.checkBoxSaveLog.Size = new System.Drawing.Size(85, 19);
+            this.checkBoxSaveLog.TabIndex = 13;
+            this.checkBoxSaveLog.Text = "SaveLog";
+            this.checkBoxSaveLog.UseVisualStyleBackColor = true;
+            // 
+            // textBoxLogPath
+            // 
+            this.textBoxLogPath.Location = new System.Drawing.Point(113, 834);
+            this.textBoxLogPath.Name = "textBoxLogPath";
+            this.textBoxLogPath.Size = new System.Drawing.Size(384, 25);
+            this.textBoxLogPath.TabIndex = 12;
+            // 
+            // richTextBoxState
+            // 
+            this.richTextBoxState.Location = new System.Drawing.Point(15, 684);
+            this.richTextBoxState.Name = "richTextBoxState";
+            this.richTextBoxState.Size = new System.Drawing.Size(586, 141);
+            this.richTextBoxState.TabIndex = 16;
+            this.richTextBoxState.Text = "";
+            // 
+            // buttonLog
+            // 
+            this.buttonLog.Location = new System.Drawing.Point(13, 835);
+            this.buttonLog.Name = "buttonLog";
+            this.buttonLog.Size = new System.Drawing.Size(85, 23);
+            this.buttonLog.TabIndex = 11;
+            this.buttonLog.Text = "OpenFile";
+            this.buttonLog.UseVisualStyleBackColor = true;
+            // 
+            // richTextBoxMessage
+            // 
+            this.richTextBoxMessage.Location = new System.Drawing.Point(15, 155);
+            this.richTextBoxMessage.Name = "richTextBoxMessage";
+            this.richTextBoxMessage.Size = new System.Drawing.Size(586, 523);
+            this.richTextBoxMessage.TabIndex = 15;
+            this.richTextBoxMessage.Text = "";
+            // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.buttonCmd22);
             this.groupBox1.Controls.Add(this.textBoxCmd22);
             this.groupBox1.Controls.Add(this.label28);
@@ -285,11 +552,11 @@
             this.groupBox1.Controls.Add(this.buttonCmd1);
             this.groupBox1.Controls.Add(this.textBoxCmd1);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Location = new System.Drawing.Point(575, 115);
+            this.groupBox1.Location = new System.Drawing.Point(607, 155);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.groupBox1.Size = new System.Drawing.Size(489, 719);
-            this.groupBox1.TabIndex = 4;
+            this.groupBox1.Size = new System.Drawing.Size(519, 710);
+            this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Command List";
             // 
@@ -908,293 +1175,36 @@
             this.label7.Size = new System.Drawing.Size(23, 15);
             this.label7.TabIndex = 0;
             this.label7.Text = "1:";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
-            // 
-            // groupBoxCom
-            // 
-            this.groupBoxCom.Controls.Add(this.buttonOpenCom);
-            this.groupBoxCom.Controls.Add(this.label6);
-            this.groupBoxCom.Controls.Add(this.comboBoxFlowControl);
-            this.groupBoxCom.Controls.Add(this.label5);
-            this.groupBoxCom.Controls.Add(this.comboBoxByteSize);
-            this.groupBoxCom.Controls.Add(this.label4);
-            this.groupBoxCom.Controls.Add(this.comboBoxParity);
-            this.groupBoxCom.Controls.Add(this.label3);
-            this.groupBoxCom.Controls.Add(this.comboBoxStopBit);
-            this.groupBoxCom.Controls.Add(this.label2);
-            this.groupBoxCom.Controls.Add(this.comboBoxBaudRate);
-            this.groupBoxCom.Controls.Add(this.label1);
-            this.groupBoxCom.Controls.Add(this.comboBoxCom);
-            this.groupBoxCom.Location = new System.Drawing.Point(10, 6);
-            this.groupBoxCom.Name = "groupBoxCom";
-            this.groupBoxCom.Size = new System.Drawing.Size(776, 103);
-            this.groupBoxCom.TabIndex = 3;
-            this.groupBoxCom.TabStop = false;
-            this.groupBoxCom.Text = "COM Port Setting";
-            this.groupBoxCom.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // buttonOpenCom
-            // 
-            this.buttonOpenCom.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonOpenCom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.buttonOpenCom.Location = new System.Drawing.Point(685, 59);
-            this.buttonOpenCom.Name = "buttonOpenCom";
-            this.buttonOpenCom.Size = new System.Drawing.Size(80, 28);
-            this.buttonOpenCom.TabIndex = 12;
-            this.buttonOpenCom.Text = "Open";
-            this.buttonOpenCom.UseVisualStyleBackColor = false;
-            this.buttonOpenCom.Click += new System.EventHandler(this.buttonOpenCom_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(196, 62);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(111, 15);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Flow Control:";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
-            // 
-            // comboBoxFlowControl
-            // 
-            this.comboBoxFlowControl.FormattingEnabled = true;
-            this.comboBoxFlowControl.Items.AddRange(new object[] {
-            "No Control",
-            "SW Control",
-            "HW Control"});
-            this.comboBoxFlowControl.Location = new System.Drawing.Point(313, 59);
-            this.comboBoxFlowControl.Name = "comboBoxFlowControl";
-            this.comboBoxFlowControl.Size = new System.Drawing.Size(181, 23);
-            this.comboBoxFlowControl.TabIndex = 10;
-            this.comboBoxFlowControl.SelectedIndexChanged += new System.EventHandler(this.comboBox7_SelectedIndexChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 62);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(79, 15);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "ByteSize:";
-            // 
-            // comboBoxByteSize
-            // 
-            this.comboBoxByteSize.FormattingEnabled = true;
-            this.comboBoxByteSize.Items.AddRange(new object[] {
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9"});
-            this.comboBoxByteSize.Location = new System.Drawing.Point(87, 59);
-            this.comboBoxByteSize.Name = "comboBoxByteSize";
-            this.comboBoxByteSize.Size = new System.Drawing.Size(80, 23);
-            this.comboBoxByteSize.TabIndex = 8;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(605, 33);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 15);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Parity:";
-            // 
-            // comboBoxParity
-            // 
-            this.comboBoxParity.FormattingEnabled = true;
-            this.comboBoxParity.Items.AddRange(new object[] {
-            "None",
-            "Odd",
-            "Even"});
-            this.comboBoxParity.Location = new System.Drawing.Point(685, 30);
-            this.comboBoxParity.Name = "comboBoxParity";
-            this.comboBoxParity.Size = new System.Drawing.Size(80, 23);
-            this.comboBoxParity.TabIndex = 6;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(415, 33);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 15);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "StopBits:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // comboBoxStopBit
-            // 
-            this.comboBoxStopBit.FormattingEnabled = true;
-            this.comboBoxStopBit.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "1.5",
-            "2"});
-            this.comboBoxStopBit.Location = new System.Drawing.Point(495, 30);
-            this.comboBoxStopBit.Name = "comboBoxStopBit";
-            this.comboBoxStopBit.Size = new System.Drawing.Size(80, 23);
-            this.comboBoxStopBit.TabIndex = 4;
-            this.comboBoxStopBit.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(196, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 15);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "BaudRate:";
-            // 
-            // comboBoxBaudRate
-            // 
-            this.comboBoxBaudRate.FormattingEnabled = true;
-            this.comboBoxBaudRate.Items.AddRange(new object[] {
-            "9600",
-            "19200",
-            "38400",
-            "57600",
-            "115200"});
-            this.comboBoxBaudRate.Location = new System.Drawing.Point(276, 30);
-            this.comboBoxBaudRate.Name = "comboBoxBaudRate";
-            this.comboBoxBaudRate.Size = new System.Drawing.Size(92, 23);
-            this.comboBoxBaudRate.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 15);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "COM Port:";
-            // 
-            // comboBoxCom
-            // 
-            this.comboBoxCom.FormattingEnabled = true;
-            this.comboBoxCom.Location = new System.Drawing.Point(87, 30);
-            this.comboBoxCom.Name = "comboBoxCom";
-            this.comboBoxCom.Size = new System.Drawing.Size(80, 23);
-            this.comboBoxCom.TabIndex = 0;
-            this.comboBoxCom.SelectedIndexChanged += new System.EventHandler(this.comboBoxCom_SelectedIndexChanged);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(69, 6);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(133, 23);
-            this.comboBox1.TabIndex = 2;
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1088, 908);
-            this.tabControl1.TabIndex = 1;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.button1);
-            this.groupBox3.Controls.Add(this.comboBoxBleDevice);
-            this.groupBox3.Controls.Add(this.labelBle);
-            this.groupBox3.Location = new System.Drawing.Point(6, 6);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1068, 97);
-            this.groupBox3.TabIndex = 0;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Ble Control Setting";
-            // 
-            // labelBle
-            // 
-            this.labelBle.AutoSize = true;
-            this.labelBle.Location = new System.Drawing.Point(7, 25);
-            this.labelBle.Name = "labelBle";
-            this.labelBle.Size = new System.Drawing.Size(95, 15);
-            this.labelBle.TabIndex = 0;
-            this.labelBle.Text = "Ble Device:";
-            // 
-            // comboBoxBleDevice
-            // 
-            this.comboBoxBleDevice.FormattingEnabled = true;
-            this.comboBoxBleDevice.Location = new System.Drawing.Point(108, 22);
-            this.comboBoxBleDevice.Name = "comboBoxBleDevice";
-            this.comboBoxBleDevice.Size = new System.Drawing.Size(230, 23);
-            this.comboBoxBleDevice.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(354, 22);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(7, 110);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(615, 621);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "";
-            // 
-            // openFileDialogLog
-            // 
-            this.openFileDialogLog.FileName = "openFileDialogLog";
-            // 
-            // buttonLog
-            // 
-            this.buttonLog.Location = new System.Drawing.Point(11, 847);
-            this.buttonLog.Name = "buttonLog";
-            this.buttonLog.Size = new System.Drawing.Size(85, 23);
-            this.buttonLog.TabIndex = 2;
-            this.buttonLog.Text = "OpenFile";
-            this.buttonLog.UseVisualStyleBackColor = true;
-            // 
-            // textBoxLogPath
-            // 
-            this.textBoxLogPath.Location = new System.Drawing.Point(102, 845);
-            this.textBoxLogPath.Name = "textBoxLogPath";
-            this.textBoxLogPath.Size = new System.Drawing.Size(359, 25);
-            this.textBoxLogPath.TabIndex = 3;
-            // 
-            // checkBoxSaveLog
-            // 
-            this.checkBoxSaveLog.AutoSize = true;
-            this.checkBoxSaveLog.Location = new System.Drawing.Point(484, 850);
-            this.checkBoxSaveLog.Name = "checkBoxSaveLog";
-            this.checkBoxSaveLog.Size = new System.Drawing.Size(85, 19);
-            this.checkBoxSaveLog.TabIndex = 4;
-            this.checkBoxSaveLog.Text = "SaveLog";
-            this.checkBoxSaveLog.UseVisualStyleBackColor = true;
             // 
             // SmartValveControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1112, 920);
+            this.ClientSize = new System.Drawing.Size(1130, 889);
+            this.Controls.Add(this.checkBoxSaveLog);
+            this.Controls.Add(this.textBoxLogPath);
+            this.Controls.Add(this.richTextBoxState);
+            this.Controls.Add(this.buttonLog);
+            this.Controls.Add(this.richTextBoxMessage);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tabControl1);
             this.Name = "SmartValveControl";
             this.Text = "SmartValveControl";
             this.Load += new System.EventHandler(this.SmartValveControl_Load);
             this.tabPage2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBoxCom.ResumeLayout(false);
             this.groupBoxCom.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1217,8 +1227,28 @@
         private System.Windows.Forms.ComboBox comboBoxByteSize;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBoxParity;
+        private System.Windows.Forms.Button buttonOpenCom;
+        private System.IO.Ports.SerialPort serialPort;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button buttonClear;
+        private System.Windows.Forms.CheckBox checkBoxShowTime;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button buttonBleSearch;
+        private System.Windows.Forms.ComboBox comboBoxBleDevice;
+        private System.Windows.Forms.Label labelBle;
+        private System.Windows.Forms.OpenFileDialog openFileDialogLog;
+        private System.Windows.Forms.CheckBox checkBoxSaveLog;
+        private System.Windows.Forms.TextBox textBoxLogPath;
+        private System.Windows.Forms.RichTextBox richTextBoxState;
+        private System.Windows.Forms.Button buttonLog;
+        private System.Windows.Forms.RichTextBox richTextBoxMessage;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button buttonCmd22;
+        private System.Windows.Forms.TextBox textBoxCmd22;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Button buttonCmd21;
+        private System.Windows.Forms.TextBox textBoxCmd21;
+        private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Button buttonCmd20;
         private System.Windows.Forms.TextBox textBoxCmd20;
         private System.Windows.Forms.Label label26;
@@ -1278,28 +1308,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button buttonCmd1;
         private System.Windows.Forms.TextBox textBoxCmd1;
-        private System.Windows.Forms.Button buttonCmd22;
-        private System.Windows.Forms.TextBox textBoxCmd22;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Button buttonCmd21;
-        private System.Windows.Forms.TextBox textBoxCmd21;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Button buttonOpenCom;
-        private System.IO.Ports.SerialPort serialPort;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button buttonClear;
-        private System.Windows.Forms.CheckBox checkBoxShowTime;
-        private System.Windows.Forms.RichTextBox richTextBoxMessage;
-        private System.Windows.Forms.RichTextBox richTextBoxState;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBoxBleDevice;
-        private System.Windows.Forms.Label labelBle;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.OpenFileDialog openFileDialogLog;
-        private System.Windows.Forms.Button buttonLog;
-        private System.Windows.Forms.TextBox textBoxLogPath;
-        private System.Windows.Forms.CheckBox checkBoxSaveLog;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button buttonConnect;
     }
 }
 
