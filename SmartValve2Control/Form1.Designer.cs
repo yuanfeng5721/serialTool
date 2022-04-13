@@ -129,6 +129,11 @@
             this.buttonCmd1 = new System.Windows.Forms.Button();
             this.textBoxCmd1 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.tabPage2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -136,6 +141,25 @@
             this.groupBoxCom.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
+            this.splitContainer4.Panel2.SuspendLayout();
+            this.splitContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
+            this.splitContainer5.Panel1.SuspendLayout();
+            this.splitContainer5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage2
@@ -144,7 +168,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1080, 116);
+            this.tabPage2.Size = new System.Drawing.Size(1080, 112);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "BLE";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -206,21 +230,18 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1080, 112);
+            this.tabPage1.Size = new System.Drawing.Size(1149, 112);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "COM";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.buttonClear);
             this.groupBox2.Controls.Add(this.checkBoxShowTime);
             this.groupBox2.Location = new System.Drawing.Point(793, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(271, 99);
+            this.groupBox2.Size = new System.Drawing.Size(350, 99);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Operation";
@@ -248,9 +269,6 @@
             // 
             // groupBoxCom
             // 
-            this.groupBoxCom.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxCom.Controls.Add(this.buttonOpenCom);
             this.groupBoxCom.Controls.Add(this.label6);
             this.groupBoxCom.Controls.Add(this.comboBoxFlowControl);
@@ -266,7 +284,7 @@
             this.groupBoxCom.Controls.Add(this.comboBoxCom);
             this.groupBoxCom.Location = new System.Drawing.Point(10, 6);
             this.groupBoxCom.Name = "groupBoxCom";
-            this.groupBoxCom.Size = new System.Drawing.Size(776, 99);
+            this.groupBoxCom.Size = new System.Drawing.Size(769, 99);
             this.groupBoxCom.TabIndex = 3;
             this.groupBoxCom.TabStop = false;
             this.groupBoxCom.Text = "COM Port Setting";
@@ -427,12 +445,15 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Location = new System.Drawing.Point(3, 7);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1088, 141);
+            this.tabControl1.Size = new System.Drawing.Size(1157, 141);
             this.tabControl1.TabIndex = 1;
             // 
             // openFileDialogLog
@@ -442,7 +463,7 @@
             // checkBoxSaveLog
             // 
             this.checkBoxSaveLog.AutoSize = true;
-            this.checkBoxSaveLog.Location = new System.Drawing.Point(512, 837);
+            this.checkBoxSaveLog.Location = new System.Drawing.Point(512, 19);
             this.checkBoxSaveLog.Name = "checkBoxSaveLog";
             this.checkBoxSaveLog.Size = new System.Drawing.Size(85, 19);
             this.checkBoxSaveLog.TabIndex = 13;
@@ -451,33 +472,35 @@
             // 
             // textBoxLogPath
             // 
-            this.textBoxLogPath.Location = new System.Drawing.Point(113, 834);
+            this.textBoxLogPath.Location = new System.Drawing.Point(104, 17);
             this.textBoxLogPath.Name = "textBoxLogPath";
             this.textBoxLogPath.Size = new System.Drawing.Size(384, 25);
             this.textBoxLogPath.TabIndex = 12;
             // 
             // richTextBoxState
             // 
-            this.richTextBoxState.Location = new System.Drawing.Point(15, 684);
+            this.richTextBoxState.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBoxState.Location = new System.Drawing.Point(0, 0);
             this.richTextBoxState.Name = "richTextBoxState";
-            this.richTextBoxState.Size = new System.Drawing.Size(586, 141);
+            this.richTextBoxState.Size = new System.Drawing.Size(656, 168);
             this.richTextBoxState.TabIndex = 16;
             this.richTextBoxState.Text = "";
             // 
             // buttonLog
             // 
-            this.buttonLog.Location = new System.Drawing.Point(13, 835);
+            this.buttonLog.Location = new System.Drawing.Point(7, 15);
             this.buttonLog.Name = "buttonLog";
-            this.buttonLog.Size = new System.Drawing.Size(85, 23);
+            this.buttonLog.Size = new System.Drawing.Size(85, 25);
             this.buttonLog.TabIndex = 11;
             this.buttonLog.Text = "OpenFile";
             this.buttonLog.UseVisualStyleBackColor = true;
             // 
             // richTextBoxMessage
             // 
-            this.richTextBoxMessage.Location = new System.Drawing.Point(15, 155);
+            this.richTextBoxMessage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBoxMessage.Location = new System.Drawing.Point(0, 0);
             this.richTextBoxMessage.Name = "richTextBoxMessage";
-            this.richTextBoxMessage.Size = new System.Drawing.Size(586, 523);
+            this.richTextBoxMessage.Size = new System.Drawing.Size(656, 497);
             this.richTextBoxMessage.TabIndex = 15;
             this.richTextBoxMessage.Text = "";
             // 
@@ -552,10 +575,10 @@
             this.groupBox1.Controls.Add(this.buttonCmd1);
             this.groupBox1.Controls.Add(this.textBoxCmd1);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Location = new System.Drawing.Point(607, 155);
+            this.groupBox1.Location = new System.Drawing.Point(3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.groupBox1.Size = new System.Drawing.Size(519, 710);
+            this.groupBox1.Size = new System.Drawing.Size(497, 662);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Command List";
@@ -1176,19 +1199,99 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "1:";
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.richTextBoxMessage);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.richTextBoxState);
+            this.splitContainer1.Size = new System.Drawing.Size(656, 669);
+            this.splitContainer1.SplitterDistance = 497;
+            this.splitContainer1.TabIndex = 17;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.splitContainer1);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.groupBox1);
+            this.splitContainer2.Size = new System.Drawing.Size(1167, 669);
+            this.splitContainer2.SplitterDistance = 656;
+            this.splitContainer2.TabIndex = 19;
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.splitContainer2);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.splitContainer5);
+            this.splitContainer3.Size = new System.Drawing.Size(1167, 732);
+            this.splitContainer3.SplitterDistance = 669;
+            this.splitContainer3.TabIndex = 20;
+            // 
+            // splitContainer4
+            // 
+            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer4.Name = "splitContainer4";
+            this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer4.Panel1
+            // 
+            this.splitContainer4.Panel1.Controls.Add(this.tabControl1);
+            // 
+            // splitContainer4.Panel2
+            // 
+            this.splitContainer4.Panel2.Controls.Add(this.splitContainer3);
+            this.splitContainer4.Size = new System.Drawing.Size(1167, 889);
+            this.splitContainer4.SplitterDistance = 153;
+            this.splitContainer4.TabIndex = 21;
+            // 
+            // splitContainer5
+            // 
+            this.splitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer5.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer5.Name = "splitContainer5";
+            // 
+            // splitContainer5.Panel1
+            // 
+            this.splitContainer5.Panel1.Controls.Add(this.checkBoxSaveLog);
+            this.splitContainer5.Panel1.Controls.Add(this.textBoxLogPath);
+            this.splitContainer5.Panel1.Controls.Add(this.buttonLog);
+            this.splitContainer5.Size = new System.Drawing.Size(1167, 59);
+            this.splitContainer5.SplitterDistance = 656;
+            this.splitContainer5.TabIndex = 19;
+            // 
             // SmartValveControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1130, 889);
-            this.Controls.Add(this.checkBoxSaveLog);
-            this.Controls.Add(this.textBoxLogPath);
-            this.Controls.Add(this.richTextBoxState);
-            this.Controls.Add(this.buttonLog);
-            this.Controls.Add(this.richTextBoxMessage);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.tabControl1);
+            this.ClientSize = new System.Drawing.Size(1167, 889);
+            this.Controls.Add(this.splitContainer4);
             this.Name = "SmartValveControl";
             this.Text = "SmartValveControl";
             this.Load += new System.EventHandler(this.SmartValveControl_Load);
@@ -1203,8 +1306,27 @@
             this.tabControl1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
+            this.splitContainer4.Panel1.ResumeLayout(false);
+            this.splitContainer4.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
+            this.splitContainer4.ResumeLayout(false);
+            this.splitContainer5.Panel1.ResumeLayout(false);
+            this.splitContainer5.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
+            this.splitContainer5.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1310,6 +1432,11 @@
         private System.Windows.Forms.TextBox textBoxCmd1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button buttonConnect;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.SplitContainer splitContainer4;
+        private System.Windows.Forms.SplitContainer splitContainer5;
     }
 }
 
