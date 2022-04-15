@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using Windows.Devices.Bluetooth;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using System.Collections.Concurrent;
+using SmartValve2Control.Properties;
 
 namespace SmartValve2Control
 {
@@ -35,11 +36,13 @@ namespace SmartValve2Control
         private ConcurrentQueue<byte[]> serial_recv_buffer = new ConcurrentQueue<byte[]>();
 
         Encoding encoder = Encoding.Default;
-        const int cmdlistcount = 15;
+        const int cmdlistcount = 20;
 
         TextBox[] TextBox_Cmds = new TextBox[cmdlistcount];
         Button[] Button_Cmds = new Button[cmdlistcount];
         CheckBox[] CheckBox_Cmds = new CheckBox[cmdlistcount];
+
+        private Settings config = new Settings();
 
         public SmartValveControl()
         {
@@ -137,22 +140,59 @@ namespace SmartValve2Control
             return null;//控件不存在
         }
 
+        private void config_load()
+        {
+            config.Reload();
+
+            comboBoxCom.Text = config.comboBoxCom;
+            comboBoxBaudRate.Text = config.comboBoxBaudRate;
+            comboBoxParity.Text = config.comboBoxParity;
+            comboBoxByteSize.Text = config.comboBoxByteSize;
+            comboBoxStopBit.Text = config.comboBoxStopBit;
+
+            Type t = typeof(Settings);
+
+            for(int i=0; i<cmdlistcount; i++)
+            {
+                int index = i + 1;
+                TextBox_Cmds[i].Text = (String)t.GetProperty("cmd" + index).GetValue(config);
+                CheckBox_Cmds[i].Checked = (bool)t.GetProperty("cmdbr" + index).GetValue(config);
+            }
+        }
+
+        private void config_save()
+        {
+            config.comboBoxCom = comboBoxCom.Text;
+            config.comboBoxBaudRate = comboBoxBaudRate.Text;
+            config.comboBoxParity = comboBoxParity.Text;
+            config.comboBoxByteSize = comboBoxByteSize.Text;
+            config.comboBoxStopBit = comboBoxStopBit.Text;
+
+            Type t = typeof(Settings);
+
+            for (int i = 0; i < cmdlistcount; i++)
+            {
+                int index = i + 1;
+                t.GetProperty("cmd" + index).SetValue(config, TextBox_Cmds[i].Text, null);
+                t.GetProperty("cmdbr" + index).SetValue(config, CheckBox_Cmds[i].Checked, null);
+            }
+
+            config.Save();
+        }
+
         private void SmartValveControl_Load(object sender, EventArgs e)
         {
+            config_load();
+
             Console.SetOut(new TextBoxWriter(richTextBoxState));
             //SearchCompleteSerial(serialPort, comboBoxCom);
             blectl = new BleControl(this);
         }
 
-
-        private void SmartValveControl_FormClosed(object sender, FormClosedEventArgs e)
+        private void SmartValveControl_FormClosing(object sender, FormClosingEventArgs e)
         {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
+            serial_send_stop();
+            config_save();
         }
 
         private void buttonCmdSend_Click(object sender, EventArgs e)
@@ -375,64 +415,21 @@ namespace SmartValve2Control
             }
         }
 
-        private void send_loop_start()
-        {
-            loop_timer.Enabled = true;
-            //btn_show_send.Text = "停止";
-        }
+        //private void send_loop_start()
+        //{
+        //    loop_timer.Enabled = true;
+        //}
 
-        private void send_loop_stop()
-        {
-            //if (lua_thread != null)
-            //{
-            //    _lua_should_stop = true;
-            //    lua_thread.Abort();
-            //    while (lua_thread != null)
-            //    {
-            //        Application.DoEvents();
-            //    }
-            //    btn_show_send.Text = "发送";
-            //}
-            //else if (file_thread != null)
-            //{
-            //    while (file_thread != null)
-            //    {
-            //        _file_should_stop = true;
-            //        Application.DoEvents();
-            //    }
-            //}
-
-            loop_timer.Enabled = false;
-            //btn_show_send.Text = "发送";
-        }
+        //private void send_loop_stop()
+        //{
+        //    loop_timer.Enabled = false;
+        //}
 
         private bool serial_send_stop()
         {
-            if (loop_timer.Enabled)
-            {
-                send_loop_stop();
-
-                return true;
-            }
-            //else if (lua_thread != null)
+            //if (loop_timer.Enabled)
             //{
-            //    _lua_should_stop = true;
-            //    lua_thread.Abort();
-            //    while (lua_thread != null)
-            //    {
-            //        Application.DoEvents();
-            //    }
-            //    btn_show_send.Text = "发送";
-
-            //    return true;
-            //}
-            //else if (file_thread != null)
-            //{
-            //    while (file_thread != null)
-            //    {
-            //        _file_should_stop = true;
-            //        Application.DoEvents();
-            //    }
+            //    send_loop_stop();
 
             //    return true;
             //}
@@ -471,8 +468,7 @@ namespace SmartValve2Control
             {
                 str_tmp += encoder.GetString(buffer);
             }
-
-            
+      
             {
                 if (_recv_file)
                 {
@@ -802,94 +798,12 @@ namespace SmartValve2Control
                 this.BeginInvoke((EventHandler)(delegate
                 {
                     //group_send_stop();
-                    //serial_send_stop();
+                    serial_send_stop();
 
                     MessageBoxEx.Show(this, ex.Message, "消息", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }));
             }
         }
-        /* 串口自动扫描端口号  */
-        //private void SearchCompleteSerial(SerialPort myport, ComboBox mybox)
-        //{
-        //    /* 先清空端口下拉列表 */
-        //    mybox.Items.Clear();
-
-        //    String[] mystring = SerialPort.GetPortNames(); // 获取计算机的端口名的数组
-        //    for (int i = 0; i < mystring.Length; i++)
-        //        mybox.Items.Add(mystring[i]); // 往下拉列表中添加端口号
-
-        //    mybox.Text = mystring[0]; // 默认选中的是第一个端口（小的端口）
-        //}
-
-        /* 打开串口按键  点击监听事件 */
-        //private void buttonOpenCom_Click(object sender, EventArgs e)
-        //{
-
-        //    /* 先判断当前串口是打开状态还是关闭状态 */
-        //    if (buttonOpenCom.Text == "Open") // 串口还没有打开 需要打开串口 
-        //    {
-        //        try
-        //        {
-
-        //            serialPort.PortName = comboBoxCom.Text; // 端口号
-        //            serialPort.BaudRate = int.Parse(comboBoxBaudRate.Text); // 串口通信的波特率
-        //            if (comboBoxStopBit.Text == "1.5")
-        //            {
-        //                serialPort.StopBits = StopBits.OnePointFive; // 串口停止位1.5
-        //            }
-        //            else
-        //            {
-        //                serialPort.StopBits = (StopBits)int.Parse(comboBoxStopBit.Text);  // 串口停止位
-        //            }
-
-        //            if (comboBoxParity.Text == "None")      //串口奇偶校验位
-        //            {
-        //                serialPort.Parity = Parity.None;
-        //            }
-        //            else if (comboBoxParity.Text == "Odd")
-        //            {
-        //                serialPort.Parity = Parity.Odd;
-        //            }
-        //            else if (comboBoxParity.Text == "Even")
-        //            {
-        //                serialPort.Parity = Parity.Even;
-        //            }
-        //            else
-        //            {
-        //                serialPort.Parity = Parity.None;
-        //            }
-
-        //            serialPort.DataBits = int.Parse(comboBoxByteSize.Text);  //串口数据位
-
-        //            serialPort.Open(); // 打开串口
-        //            buttonOpenCom.Text = "Close";
-        //            state_printf("Open sucessed!\r\n", Color.Black);
-        //            //lab_Device_Connect.Text = "设备已连接";
-
-        //        }
-        //        catch
-        //        {
-        //            //MessageBox.Show("端口打开错误，请检查串口", "错误");
-        //            state_printf("Open error, please check!\r\n", Color.Red);
-        //        }
-        //    }
-        //    else  // 串口已经打开 需要关闭 
-        //    {
-        //        try
-        //        {
-        //            serialPort.Close(); // 关闭串口 
-        //            buttonOpenCom.Text = "Open";
-        //            state_printf("Close sucessed!\r\n", Color.Black);
-        //            //lab_Device_Connect.Text = "设备已断开";
-        //        }
-        //        catch
-        //        {
-        //            //MessageBox.Show("关闭串口错误");
-        //            state_printf("Close error!\r\n", Color.Red);
-        //        }
-        //    }
-
-        //}/* 打开串口 按键监听*/
 
         /* 调试追踪*/
         public void DebugTrack(RichTextBox log, string str, Color color)
@@ -939,12 +853,8 @@ namespace SmartValve2Control
 
         private void buttonClear_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void buttonCmdSend1_Click(object sender, EventArgs e)
-        {
-
+            richTextBoxMessage.Clear();
+            richTextBoxState.Clear();
         }
 
         private void buttonLog_Click(object sender, EventArgs e)
@@ -993,7 +903,7 @@ namespace SmartValve2Control
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonBleSearch_Click(object sender, EventArgs e)
         {
             if(buttonBleSearch.Text == "Search")
             {

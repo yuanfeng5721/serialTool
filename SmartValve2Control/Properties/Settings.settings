@@ -5,5 +5,140 @@
     <Setting Name="comboBoxCom" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM1</Value>
     </Setting>
+    <Setting Name="comboBoxBaudRate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">115200</Value>
+    </Setting>
+    <Setting Name="comboBoxByteSize" Type="System.String" Scope="User">
+      <Value Profile="(Default)">8</Value>
+    </Setting>
+    <Setting Name="comboBoxParity" Type="System.String" Scope="User">
+      <Value Profile="(Default)">None</Value>
+    </Setting>
+    <Setting Name="comboBoxStopBit" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="cmd1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">nv_rd boot_mode</Value>
+    </Setting>
+    <Setting Name="cmd2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">set_mode 0</Value>
+    </Setting>
+    <Setting Name="cmd3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">set_mode 1</Value>
+    </Setting>
+    <Setting Name="cmd4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">set_mode 2</Value>
+    </Setting>
+    <Setting Name="cmd5" Type="System.String" Scope="User">
+      <Value Profile="(Default)">set_update_freq 5</Value>
+    </Setting>
+    <Setting Name="cmd6" Type="System.String" Scope="User">
+      <Value Profile="(Default)">set_sample_freq 5</Value>
+    </Setting>
+    <Setting Name="cmd7" Type="System.String" Scope="User">
+      <Value Profile="(Default)">nv_wr clientid 866156056785184</Value>
+    </Setting>
+    <Setting Name="cmd8" Type="System.String" Scope="User">
+      <Value Profile="(Default)">nv_wr username 489050</Value>
+    </Setting>
+    <Setting Name="cmd9" Type="System.String" Scope="User">
+      <Value Profile="(Default)">nv_wr passwd rsGBj7/RePxN5alT1wd+oSYxlfIyF7TUHBN1vRVv0EM=</Value>
+    </Setting>
+    <Setting Name="cmd10" Type="System.String" Scope="User">
+      <Value Profile="(Default)">nv_rd clientid</Value>
+    </Setting>
+    <Setting Name="cmd11" Type="System.String" Scope="User">
+      <Value Profile="(Default)">nv_rd username</Value>
+    </Setting>
+    <Setting Name="cmd12" Type="System.String" Scope="User">
+      <Value Profile="(Default)">nv_rd passwd</Value>
+    </Setting>
+    <Setting Name="cmd13" Type="System.String" Scope="User">
+      <Value Profile="(Default)">get_version</Value>
+    </Setting>
+    <Setting Name="cmd14" Type="System.String" Scope="User">
+      <Value Profile="(Default)">moto_encoder_test 37500 80 1</Value>
+    </Setting>
+    <Setting Name="cmd15" Type="System.String" Scope="User">
+      <Value Profile="(Default)">set_valve_angle 30 37500</Value>
+    </Setting>
+    <Setting Name="cmd16" Type="System.String" Scope="User">
+      <Value Profile="(Default)">set_moto_freq 38000</Value>
+    </Setting>
+    <Setting Name="cmd17" Type="System.String" Scope="User">
+      <Value Profile="(Default)">get_moto_freq</Value>
+    </Setting>
+    <Setting Name="cmd18" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="cmd19" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="cmd20" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="cmdbr1" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cmdbr2" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cmdbr3" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cmdbr4" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cmdbr5" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cmdbr6" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cmdbr7" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cmdbr8" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cmdbr9" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cmdbr10" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cmdbr11" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cmdbr12" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cmdbr13" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cmdbr14" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cmdbr15" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cmdbr16" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cmdbr17" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cmdbr18" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cmdbr19" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cmdbr20" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="设置" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

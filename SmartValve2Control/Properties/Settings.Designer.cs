@@ -34,5 +34,545 @@ namespace SmartValve2Control.Properties {
                 this["comboBoxCom"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("115200")]
+        public string comboBoxBaudRate {
+            get {
+                return ((string)(this["comboBoxBaudRate"]));
+            }
+            set {
+                this["comboBoxBaudRate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
+        public string comboBoxByteSize {
+            get {
+                return ((string)(this["comboBoxByteSize"]));
+            }
+            set {
+                this["comboBoxByteSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public string comboBoxParity {
+            get {
+                return ((string)(this["comboBoxParity"]));
+            }
+            set {
+                this["comboBoxParity"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public string comboBoxStopBit {
+            get {
+                return ((string)(this["comboBoxStopBit"]));
+            }
+            set {
+                this["comboBoxStopBit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("nv_rd boot_mode")]
+        public string cmd1 {
+            get {
+                return ((string)(this["cmd1"]));
+            }
+            set {
+                this["cmd1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("set_mode 0")]
+        public string cmd2 {
+            get {
+                return ((string)(this["cmd2"]));
+            }
+            set {
+                this["cmd2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("set_mode 1")]
+        public string cmd3 {
+            get {
+                return ((string)(this["cmd3"]));
+            }
+            set {
+                this["cmd3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("set_mode 2")]
+        public string cmd4 {
+            get {
+                return ((string)(this["cmd4"]));
+            }
+            set {
+                this["cmd4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("set_update_freq 5")]
+        public string cmd5 {
+            get {
+                return ((string)(this["cmd5"]));
+            }
+            set {
+                this["cmd5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("set_sample_freq 5")]
+        public string cmd6 {
+            get {
+                return ((string)(this["cmd6"]));
+            }
+            set {
+                this["cmd6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("nv_wr clientid 866156056785184")]
+        public string cmd7 {
+            get {
+                return ((string)(this["cmd7"]));
+            }
+            set {
+                this["cmd7"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("nv_wr username 489050")]
+        public string cmd8 {
+            get {
+                return ((string)(this["cmd8"]));
+            }
+            set {
+                this["cmd8"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("nv_wr passwd rsGBj7/RePxN5alT1wd+oSYxlfIyF7TUHBN1vRVv0EM=")]
+        public string cmd9 {
+            get {
+                return ((string)(this["cmd9"]));
+            }
+            set {
+                this["cmd9"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("nv_rd clientid")]
+        public string cmd10 {
+            get {
+                return ((string)(this["cmd10"]));
+            }
+            set {
+                this["cmd10"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("nv_rd username")]
+        public string cmd11 {
+            get {
+                return ((string)(this["cmd11"]));
+            }
+            set {
+                this["cmd11"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("nv_rd passwd")]
+        public string cmd12 {
+            get {
+                return ((string)(this["cmd12"]));
+            }
+            set {
+                this["cmd12"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("get_version")]
+        public string cmd13 {
+            get {
+                return ((string)(this["cmd13"]));
+            }
+            set {
+                this["cmd13"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("moto_encoder_test 37500 80 1")]
+        public string cmd14 {
+            get {
+                return ((string)(this["cmd14"]));
+            }
+            set {
+                this["cmd14"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("set_valve_angle 30 37500")]
+        public string cmd15 {
+            get {
+                return ((string)(this["cmd15"]));
+            }
+            set {
+                this["cmd15"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("set_moto_freq 38000")]
+        public string cmd16 {
+            get {
+                return ((string)(this["cmd16"]));
+            }
+            set {
+                this["cmd16"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("get_moto_freq")]
+        public string cmd17 {
+            get {
+                return ((string)(this["cmd17"]));
+            }
+            set {
+                this["cmd17"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string cmd18 {
+            get {
+                return ((string)(this["cmd18"]));
+            }
+            set {
+                this["cmd18"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string cmd19 {
+            get {
+                return ((string)(this["cmd19"]));
+            }
+            set {
+                this["cmd19"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string cmd20 {
+            get {
+                return ((string)(this["cmd20"]));
+            }
+            set {
+                this["cmd20"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cmdbr1 {
+            get {
+                return ((bool)(this["cmdbr1"]));
+            }
+            set {
+                this["cmdbr1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cmdbr2 {
+            get {
+                return ((bool)(this["cmdbr2"]));
+            }
+            set {
+                this["cmdbr2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cmdbr3 {
+            get {
+                return ((bool)(this["cmdbr3"]));
+            }
+            set {
+                this["cmdbr3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cmdbr4 {
+            get {
+                return ((bool)(this["cmdbr4"]));
+            }
+            set {
+                this["cmdbr4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cmdbr5 {
+            get {
+                return ((bool)(this["cmdbr5"]));
+            }
+            set {
+                this["cmdbr5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cmdbr6 {
+            get {
+                return ((bool)(this["cmdbr6"]));
+            }
+            set {
+                this["cmdbr6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cmdbr7 {
+            get {
+                return ((bool)(this["cmdbr7"]));
+            }
+            set {
+                this["cmdbr7"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cmdbr8 {
+            get {
+                return ((bool)(this["cmdbr8"]));
+            }
+            set {
+                this["cmdbr8"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cmdbr9 {
+            get {
+                return ((bool)(this["cmdbr9"]));
+            }
+            set {
+                this["cmdbr9"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cmdbr10 {
+            get {
+                return ((bool)(this["cmdbr10"]));
+            }
+            set {
+                this["cmdbr10"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cmdbr11 {
+            get {
+                return ((bool)(this["cmdbr11"]));
+            }
+            set {
+                this["cmdbr11"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cmdbr12 {
+            get {
+                return ((bool)(this["cmdbr12"]));
+            }
+            set {
+                this["cmdbr12"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cmdbr13 {
+            get {
+                return ((bool)(this["cmdbr13"]));
+            }
+            set {
+                this["cmdbr13"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cmdbr14 {
+            get {
+                return ((bool)(this["cmdbr14"]));
+            }
+            set {
+                this["cmdbr14"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cmdbr15 {
+            get {
+                return ((bool)(this["cmdbr15"]));
+            }
+            set {
+                this["cmdbr15"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cmdbr16 {
+            get {
+                return ((bool)(this["cmdbr16"]));
+            }
+            set {
+                this["cmdbr16"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cmdbr17 {
+            get {
+                return ((bool)(this["cmdbr17"]));
+            }
+            set {
+                this["cmdbr17"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cmdbr18 {
+            get {
+                return ((bool)(this["cmdbr18"]));
+            }
+            set {
+                this["cmdbr18"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cmdbr19 {
+            get {
+                return ((bool)(this["cmdbr19"]));
+            }
+            set {
+                this["cmdbr19"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cmdbr20 {
+            get {
+                return ((bool)(this["cmdbr20"]));
+            }
+            set {
+                this["cmdbr20"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string 设置 {
+            get {
+                return ((string)(this["设置"]));
+            }
+            set {
+                this["设置"] = value;
+            }
+        }
     }
 }
