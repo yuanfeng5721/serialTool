@@ -23,11 +23,11 @@ namespace SmartValve2Control
         private System.Timers.Timer loop_timer = new System.Timers.Timer();
         private System.Timers.Timer recv_timer = new System.Timers.Timer();
 
-        private int in_loop_timer = 0;
+        //private int in_loop_timer = 0;
         private int in_recv_timer = 0;
         private int tn_show_time = 0;
 
-        private string recv_file_path, send_file_path;
+        private string recv_file_path;// send_file_path;
         private bool _recv_file = false;
 
         private long count_send = 0, count_recv = 0;
@@ -69,13 +69,13 @@ namespace SmartValve2Control
             //serialPort.Encoding = Encoding.GetEncoding("gb2312");  // 设置串口的编码
             //Control.CheckForIllegalCrossThreadCalls = false;  // 忽略多线程
 
-            //time_timer.Interval = 1;
-            //time_timer.Start();
+            time_timer.Interval = 1;
+            time_timer.Start();
             recv_timer.Interval = 10;
             recv_timer.Start();
 
             serialPort.DataReceived += serial_DataReceived;
-            //time_timer.Elapsed += time_timer_ElapsedEventHandler;
+            time_timer.Elapsed += time_timer_ElapsedEventHandler;
             //loop_timer.Elapsed += loop_timer_ElapsedEventHandler;
             recv_timer.Elapsed += recv_timer_ElapsedEventHandler;
 
@@ -93,6 +93,10 @@ namespace SmartValve2Control
                 CheckBox_Cmds[i] = GetControlInstance(this, "checkBoxBR" + index) as CheckBox;
                 Button_Cmds[i].Click += new System.EventHandler(buttonCmdSend_Click);
             }
+
+            //init disable some controls
+            buttonLog.Enabled = false;
+            textBoxLogPath.Enabled = false;
         }
 
         /// <summary>
@@ -133,31 +137,6 @@ namespace SmartValve2Control
             return null;//控件不存在
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void SmartValveControl_Load(object sender, EventArgs e)
         {
             Console.SetOut(new TextBoxWriter(richTextBoxState));
@@ -180,8 +159,23 @@ namespace SmartValve2Control
         {
             Button btn = (Button)sender;
             int index = int.Parse(btn.Text) - 1;
-            TextBox tb_cmd = TextBox_Cmds[index < 0 ? 0:index];
-            MessageBoxEx.Show("Button"+ tb_cmd.Text);
+
+            if(index >= 0)
+            {
+                TextBox tb_cmd = TextBox_Cmds[index < 0 ? 0 : index];
+                CheckBox cb_cmdbr = CheckBox_Cmds[index < 0 ? 0 : index];
+                String str;
+
+                if (cb_cmdbr.Checked)
+                {
+                    str = tb_cmd.Text + "\r\n";
+                }
+                else
+                {
+                    str = tb_cmd.Text;
+                }
+                serial_send_text(str);
+            }
         }
 
         void serial_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -227,6 +221,14 @@ namespace SmartValve2Control
 
                     MessageBoxEx.Show(this, ex.Message, "消息", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }));
+            }
+        }
+
+        void time_timer_ElapsedEventHandler(object sender, EventArgs e)
+        {
+            if (tn_show_time > 0)
+            {
+                tn_show_time--;
             }
         }
 
@@ -294,11 +296,23 @@ namespace SmartValve2Control
             {
                 buttonOpenCom.Image = Properties.Resources.open;
                 buttonOpenCom.Text = "Close";
+
+                comboBoxCom.Enabled = false;
+                comboBoxBaudRate.Enabled = false;
+                comboBoxParity.Enabled = false;
+                comboBoxByteSize.Enabled = false;
+                comboBoxStopBit.Enabled = false;
             }
             else
             {
                 buttonOpenCom.Image = Properties.Resources.close;
                 buttonOpenCom.Text = "Open";
+
+                comboBoxCom.Enabled = true;
+                comboBoxBaudRate.Enabled = true;
+                comboBoxParity.Enabled = true;
+                comboBoxByteSize.Enabled = true;
+                comboBoxStopBit.Enabled = true;
             }
         }
 
@@ -458,12 +472,13 @@ namespace SmartValve2Control
                 str_tmp += encoder.GetString(buffer);
             }
 
-            if (_recv_file)
+            
             {
-                File.AppendAllText(recv_file_path, str_tmp);
-            }
-            else
-            {
+                if (_recv_file)
+                {
+                    File.AppendAllText(recv_file_path, str_tmp);
+                }
+
                 string[] strs = str_tmp.Split('\b');
                 int i;
 
@@ -930,6 +945,52 @@ namespace SmartValve2Control
         private void buttonCmdSend1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonLog_Click(object sender, EventArgs e)
+        {
+            if (checkBoxSaveLog.Checked)
+            {
+                SaveFileDialog fileDialog = new SaveFileDialog();
+
+                fileDialog.Title = "Receive data to file...";
+                fileDialog.Filter = "文本文件(*.txt)|*.txt|所有文件(*.*)|*.*";
+                if (fileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    recv_file_path = fileDialog.FileName;
+                }
+                else
+                {
+                    checkBoxSaveLog.Checked = false;
+                }
+            }
+
+            if (checkBoxSaveLog.Checked)
+            {
+                textBoxLogPath.Text = recv_file_path;
+                textBoxLogPath.BackColor = System.Drawing.SystemColors.Control;
+            }
+            else
+            {
+                textBoxLogPath.Clear();
+                textBoxLogPath.BackColor = System.Drawing.SystemColors.Window;
+            }
+
+            _recv_file = checkBoxSaveLog.Checked;
+        }
+
+        private void checkBoxSaveLog_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBoxSaveLog.Checked)
+            {
+                buttonLog.Enabled = true;
+                textBoxLogPath.Enabled = true;
+            }
+            else
+            {
+                buttonLog.Enabled = false;
+                textBoxLogPath.Enabled = false;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

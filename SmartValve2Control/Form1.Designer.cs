@@ -366,7 +366,6 @@ namespace SmartValve2Control
             this.label3.Size = new System.Drawing.Size(79, 15);
             this.label3.TabIndex = 5;
             this.label3.Text = "StopBits:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // comboBoxStopBit
             // 
@@ -1570,6 +1569,7 @@ namespace SmartValve2Control
             this.checkBoxSaveLog.TabIndex = 13;
             this.checkBoxSaveLog.Text = "SaveLog";
             this.checkBoxSaveLog.UseVisualStyleBackColor = true;
+            this.checkBoxSaveLog.CheckedChanged += new System.EventHandler(this.checkBoxSaveLog_CheckedChanged);
             // 
             // buttonLog
             // 
@@ -1579,6 +1579,7 @@ namespace SmartValve2Control
             this.buttonLog.TabIndex = 11;
             this.buttonLog.Text = "OpenFile";
             this.buttonLog.UseVisualStyleBackColor = true;
+            this.buttonLog.Click += new System.EventHandler(this.buttonLog_Click);
             // 
             // textBoxLogPath
             // 
