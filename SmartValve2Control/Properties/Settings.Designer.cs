@@ -565,13 +565,13 @@ namespace SmartValve2Control.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string 设置 {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int modeIndex {
             get {
-                return ((string)(this["设置"]));
+                return ((int)(this["modeIndex"]));
             }
             set {
-                this["设置"] = value;
+                this["modeIndex"] = value;
             }
         }
     }

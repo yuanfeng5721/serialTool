@@ -35,7 +35,9 @@ namespace SmartValve2Control
             this.openFileDialogLog = new System.Windows.Forms.OpenFileDialog();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.labelMode = new System.Windows.Forms.Label();
+            this.tabControlMode = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.buttonClear = new System.Windows.Forms.Button();
@@ -65,6 +67,31 @@ namespace SmartValve2Control
             this.richTextBoxState = new System.Windows.Forms.RichTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
+            this.checkBoxBR20 = new System.Windows.Forms.CheckBox();
+            this.buttonCmdSend20 = new System.Windows.Forms.Button();
+            this.textBoxCmd20 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
+            this.checkBoxBR19 = new System.Windows.Forms.CheckBox();
+            this.buttonCmdSend19 = new System.Windows.Forms.Button();
+            this.textBoxCmd19 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
+            this.checkBoxBR18 = new System.Windows.Forms.CheckBox();
+            this.buttonCmdSend18 = new System.Windows.Forms.Button();
+            this.textBoxCmd18 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel19 = new System.Windows.Forms.TableLayoutPanel();
+            this.checkBoxBR17 = new System.Windows.Forms.CheckBox();
+            this.buttonCmdSend17 = new System.Windows.Forms.Button();
+            this.textBoxCmd17 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
+            this.checkBoxBR16 = new System.Windows.Forms.CheckBox();
+            this.buttonCmdSend16 = new System.Windows.Forms.Button();
+            this.textBoxCmd16 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
             this.checkBoxBR15 = new System.Windows.Forms.CheckBox();
             this.buttonCmdSend15 = new System.Windows.Forms.Button();
@@ -155,36 +182,12 @@ namespace SmartValve2Control
             this.slab_send = new System.Windows.Forms.ToolStripStatusLabel();
             this.slab_recv = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
-            this.checkBoxBR16 = new System.Windows.Forms.CheckBox();
-            this.buttonCmdSend16 = new System.Windows.Forms.Button();
-            this.textBoxCmd16 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel19 = new System.Windows.Forms.TableLayoutPanel();
-            this.checkBoxBR17 = new System.Windows.Forms.CheckBox();
-            this.buttonCmdSend17 = new System.Windows.Forms.Button();
-            this.textBoxCmd17 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
-            this.checkBoxBR18 = new System.Windows.Forms.CheckBox();
-            this.buttonCmdSend18 = new System.Windows.Forms.Button();
-            this.textBoxCmd18 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
-            this.checkBoxBR19 = new System.Windows.Forms.CheckBox();
-            this.buttonCmdSend19 = new System.Windows.Forms.Button();
-            this.textBoxCmd19 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
-            this.checkBoxBR20 = new System.Windows.Forms.CheckBox();
-            this.buttonCmdSend20 = new System.Windows.Forms.Button();
-            this.textBoxCmd20 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.tabControlMode.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBoxCom.SuspendLayout();
@@ -204,6 +207,11 @@ namespace SmartValve2Control
             this.splitContainer1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel22.SuspendLayout();
+            this.tableLayoutPanel21.SuspendLayout();
+            this.tableLayoutPanel20.SuspendLayout();
+            this.tableLayoutPanel19.SuspendLayout();
+            this.tableLayoutPanel18.SuspendLayout();
             this.tableLayoutPanel17.SuspendLayout();
             this.tableLayoutPanel16.SuspendLayout();
             this.tableLayoutPanel15.SuspendLayout();
@@ -229,11 +237,6 @@ namespace SmartValve2Control
             this.splitContainer5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.statusBottom.SuspendLayout();
-            this.tableLayoutPanel18.SuspendLayout();
-            this.tableLayoutPanel19.SuspendLayout();
-            this.tableLayoutPanel20.SuspendLayout();
-            this.tableLayoutPanel21.SuspendLayout();
-            this.tableLayoutPanel22.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialogLog
@@ -254,7 +257,9 @@ namespace SmartValve2Control
             // 
             // splitContainer4.Panel1
             // 
-            this.splitContainer4.Panel1.Controls.Add(this.tabControl1);
+            this.splitContainer4.Panel1.Controls.Add(this.groupBox2);
+            this.splitContainer4.Panel1.Controls.Add(this.groupBox5);
+            this.splitContainer4.Panel1.Controls.Add(this.tabControlMode);
             // 
             // splitContainer4.Panel2
             // 
@@ -263,27 +268,51 @@ namespace SmartValve2Control
             this.splitContainer4.SplitterDistance = 147;
             this.splitContainer4.TabIndex = 21;
             // 
-            // tabControl1
+            // groupBox5
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.groupBox5.Controls.Add(this.labelMode);
+            this.groupBox5.Location = new System.Drawing.Point(955, 13);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(137, 127);
+            this.groupBox5.TabIndex = 2;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Mode";
+            // 
+            // labelMode
+            // 
+            this.labelMode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(3, 7);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1089, 137);
-            this.tabControl1.TabIndex = 1;
+            this.labelMode.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelMode.ForeColor = System.Drawing.Color.Green;
+            this.labelMode.Location = new System.Drawing.Point(24, 49);
+            this.labelMode.Name = "labelMode";
+            this.labelMode.Size = new System.Drawing.Size(98, 28);
+            this.labelMode.TabIndex = 0;
+            this.labelMode.Text = "UART";
+            this.labelMode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tabControlMode
+            // 
+            this.tabControlMode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControlMode.Controls.Add(this.tabPage1);
+            this.tabControlMode.Controls.Add(this.tabPage2);
+            this.tabControlMode.Location = new System.Drawing.Point(3, 7);
+            this.tabControlMode.Name = "tabControlMode";
+            this.tabControlMode.SelectedIndex = 0;
+            this.tabControlMode.Size = new System.Drawing.Size(728, 137);
+            this.tabControlMode.TabIndex = 1;
+            this.tabControlMode.SelectedIndexChanged += new System.EventHandler(this.tabControlMode_SelectedIndexChanged);
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBoxCom);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1081, 108);
+            this.tabPage1.Size = new System.Drawing.Size(720, 108);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "COM";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -292,16 +321,16 @@ namespace SmartValve2Control
             // 
             this.groupBox2.Controls.Add(this.buttonClear);
             this.groupBox2.Controls.Add(this.checkBoxShowTime);
-            this.groupBox2.Location = new System.Drawing.Point(717, 6);
+            this.groupBox2.Location = new System.Drawing.Point(737, 13);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(308, 94);
+            this.groupBox2.Size = new System.Drawing.Size(212, 127);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Operation";
             // 
             // buttonClear
             // 
-            this.buttonClear.Location = new System.Drawing.Point(148, 29);
+            this.buttonClear.Location = new System.Drawing.Point(7, 72);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(127, 23);
             this.buttonClear.TabIndex = 1;
@@ -447,7 +476,7 @@ namespace SmartValve2Control
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1081, 108);
+            this.tabPage2.Size = new System.Drawing.Size(720, 108);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "BLE";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -462,7 +491,7 @@ namespace SmartValve2Control
             this.groupBox3.Controls.Add(this.labelBle);
             this.groupBox3.Location = new System.Drawing.Point(6, 6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1072, 94);
+            this.groupBox3.Size = new System.Drawing.Size(708, 94);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Ble Control Setting";
@@ -475,6 +504,7 @@ namespace SmartValve2Control
             this.buttonConnect.TabIndex = 3;
             this.buttonConnect.Text = "Connect";
             this.buttonConnect.UseVisualStyleBackColor = true;
+            this.buttonConnect.Click += new System.EventHandler(this.buttonConnect_Click);
             // 
             // buttonBleSearch
             // 
@@ -646,6 +676,287 @@ namespace SmartValve2Control
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(516, 487);
             this.tableLayoutPanel2.TabIndex = 4;
+            // 
+            // tableLayoutPanel22
+            // 
+            this.tableLayoutPanel22.ColumnCount = 4;
+            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel22.Controls.Add(this.checkBoxBR20, 2, 0);
+            this.tableLayoutPanel22.Controls.Add(this.buttonCmdSend20, 3, 0);
+            this.tableLayoutPanel22.Controls.Add(this.textBoxCmd20, 1, 0);
+            this.tableLayoutPanel22.Controls.Add(this.label11, 0, 0);
+            this.tableLayoutPanel22.Location = new System.Drawing.Point(3, 683);
+            this.tableLayoutPanel22.Name = "tableLayoutPanel22";
+            this.tableLayoutPanel22.RowCount = 1;
+            this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel22.Size = new System.Drawing.Size(489, 28);
+            this.tableLayoutPanel22.TabIndex = 18;
+            // 
+            // checkBoxBR20
+            // 
+            this.checkBoxBR20.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBoxBR20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBoxBR20.Location = new System.Drawing.Point(344, 3);
+            this.checkBoxBR20.Name = "checkBoxBR20";
+            this.checkBoxBR20.Size = new System.Drawing.Size(42, 22);
+            this.checkBoxBR20.TabIndex = 0;
+            this.checkBoxBR20.UseVisualStyleBackColor = true;
+            // 
+            // buttonCmdSend20
+            // 
+            this.buttonCmdSend20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonCmdSend20.Location = new System.Drawing.Point(392, 3);
+            this.buttonCmdSend20.Name = "buttonCmdSend20";
+            this.buttonCmdSend20.Size = new System.Drawing.Size(94, 22);
+            this.buttonCmdSend20.TabIndex = 2;
+            this.buttonCmdSend20.Text = "20";
+            this.buttonCmdSend20.UseVisualStyleBackColor = true;
+            // 
+            // textBoxCmd20
+            // 
+            this.textBoxCmd20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxCmd20.Location = new System.Drawing.Point(51, 3);
+            this.textBoxCmd20.Name = "textBoxCmd20";
+            this.textBoxCmd20.Size = new System.Drawing.Size(287, 25);
+            this.textBoxCmd20.TabIndex = 1;
+            // 
+            // label11
+            // 
+            this.label11.Location = new System.Drawing.Point(3, 1);
+            this.label11.Margin = new System.Windows.Forms.Padding(3, 1, 3, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(34, 26);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "20:";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tableLayoutPanel21
+            // 
+            this.tableLayoutPanel21.ColumnCount = 4;
+            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel21.Controls.Add(this.checkBoxBR19, 2, 0);
+            this.tableLayoutPanel21.Controls.Add(this.buttonCmdSend19, 3, 0);
+            this.tableLayoutPanel21.Controls.Add(this.textBoxCmd19, 1, 0);
+            this.tableLayoutPanel21.Controls.Add(this.label10, 0, 0);
+            this.tableLayoutPanel21.Location = new System.Drawing.Point(3, 649);
+            this.tableLayoutPanel21.Name = "tableLayoutPanel21";
+            this.tableLayoutPanel21.RowCount = 1;
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel21.Size = new System.Drawing.Size(489, 28);
+            this.tableLayoutPanel21.TabIndex = 18;
+            // 
+            // checkBoxBR19
+            // 
+            this.checkBoxBR19.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBoxBR19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBoxBR19.Location = new System.Drawing.Point(344, 3);
+            this.checkBoxBR19.Name = "checkBoxBR19";
+            this.checkBoxBR19.Size = new System.Drawing.Size(42, 22);
+            this.checkBoxBR19.TabIndex = 0;
+            this.checkBoxBR19.UseVisualStyleBackColor = true;
+            // 
+            // buttonCmdSend19
+            // 
+            this.buttonCmdSend19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonCmdSend19.Location = new System.Drawing.Point(392, 3);
+            this.buttonCmdSend19.Name = "buttonCmdSend19";
+            this.buttonCmdSend19.Size = new System.Drawing.Size(94, 22);
+            this.buttonCmdSend19.TabIndex = 2;
+            this.buttonCmdSend19.Text = "19";
+            this.buttonCmdSend19.UseVisualStyleBackColor = true;
+            // 
+            // textBoxCmd19
+            // 
+            this.textBoxCmd19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxCmd19.Location = new System.Drawing.Point(51, 3);
+            this.textBoxCmd19.Name = "textBoxCmd19";
+            this.textBoxCmd19.Size = new System.Drawing.Size(287, 25);
+            this.textBoxCmd19.TabIndex = 1;
+            // 
+            // label10
+            // 
+            this.label10.Location = new System.Drawing.Point(3, 1);
+            this.label10.Margin = new System.Windows.Forms.Padding(3, 1, 3, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(34, 26);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "19:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tableLayoutPanel20
+            // 
+            this.tableLayoutPanel20.ColumnCount = 4;
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel20.Controls.Add(this.checkBoxBR18, 2, 0);
+            this.tableLayoutPanel20.Controls.Add(this.buttonCmdSend18, 3, 0);
+            this.tableLayoutPanel20.Controls.Add(this.textBoxCmd18, 1, 0);
+            this.tableLayoutPanel20.Controls.Add(this.label9, 0, 0);
+            this.tableLayoutPanel20.Location = new System.Drawing.Point(3, 615);
+            this.tableLayoutPanel20.Name = "tableLayoutPanel20";
+            this.tableLayoutPanel20.RowCount = 1;
+            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel20.Size = new System.Drawing.Size(489, 28);
+            this.tableLayoutPanel20.TabIndex = 18;
+            // 
+            // checkBoxBR18
+            // 
+            this.checkBoxBR18.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBoxBR18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBoxBR18.Location = new System.Drawing.Point(344, 3);
+            this.checkBoxBR18.Name = "checkBoxBR18";
+            this.checkBoxBR18.Size = new System.Drawing.Size(42, 22);
+            this.checkBoxBR18.TabIndex = 0;
+            this.checkBoxBR18.UseVisualStyleBackColor = true;
+            // 
+            // buttonCmdSend18
+            // 
+            this.buttonCmdSend18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonCmdSend18.Location = new System.Drawing.Point(392, 3);
+            this.buttonCmdSend18.Name = "buttonCmdSend18";
+            this.buttonCmdSend18.Size = new System.Drawing.Size(94, 22);
+            this.buttonCmdSend18.TabIndex = 2;
+            this.buttonCmdSend18.Text = "18";
+            this.buttonCmdSend18.UseVisualStyleBackColor = true;
+            // 
+            // textBoxCmd18
+            // 
+            this.textBoxCmd18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxCmd18.Location = new System.Drawing.Point(51, 3);
+            this.textBoxCmd18.Name = "textBoxCmd18";
+            this.textBoxCmd18.Size = new System.Drawing.Size(287, 25);
+            this.textBoxCmd18.TabIndex = 1;
+            // 
+            // label9
+            // 
+            this.label9.Location = new System.Drawing.Point(3, 1);
+            this.label9.Margin = new System.Windows.Forms.Padding(3, 1, 3, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(34, 26);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "18:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tableLayoutPanel19
+            // 
+            this.tableLayoutPanel19.ColumnCount = 4;
+            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel19.Controls.Add(this.checkBoxBR17, 2, 0);
+            this.tableLayoutPanel19.Controls.Add(this.buttonCmdSend17, 3, 0);
+            this.tableLayoutPanel19.Controls.Add(this.textBoxCmd17, 1, 0);
+            this.tableLayoutPanel19.Controls.Add(this.label8, 0, 0);
+            this.tableLayoutPanel19.Location = new System.Drawing.Point(3, 581);
+            this.tableLayoutPanel19.Name = "tableLayoutPanel19";
+            this.tableLayoutPanel19.RowCount = 1;
+            this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel19.Size = new System.Drawing.Size(489, 28);
+            this.tableLayoutPanel19.TabIndex = 18;
+            // 
+            // checkBoxBR17
+            // 
+            this.checkBoxBR17.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBoxBR17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBoxBR17.Location = new System.Drawing.Point(344, 3);
+            this.checkBoxBR17.Name = "checkBoxBR17";
+            this.checkBoxBR17.Size = new System.Drawing.Size(42, 22);
+            this.checkBoxBR17.TabIndex = 0;
+            this.checkBoxBR17.UseVisualStyleBackColor = true;
+            // 
+            // buttonCmdSend17
+            // 
+            this.buttonCmdSend17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonCmdSend17.Location = new System.Drawing.Point(392, 3);
+            this.buttonCmdSend17.Name = "buttonCmdSend17";
+            this.buttonCmdSend17.Size = new System.Drawing.Size(94, 22);
+            this.buttonCmdSend17.TabIndex = 2;
+            this.buttonCmdSend17.Text = "17";
+            this.buttonCmdSend17.UseVisualStyleBackColor = true;
+            // 
+            // textBoxCmd17
+            // 
+            this.textBoxCmd17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxCmd17.Location = new System.Drawing.Point(51, 3);
+            this.textBoxCmd17.Name = "textBoxCmd17";
+            this.textBoxCmd17.Size = new System.Drawing.Size(287, 25);
+            this.textBoxCmd17.TabIndex = 1;
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(3, 1);
+            this.label8.Margin = new System.Windows.Forms.Padding(3, 1, 3, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(34, 26);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "17:";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tableLayoutPanel18
+            // 
+            this.tableLayoutPanel18.ColumnCount = 4;
+            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel18.Controls.Add(this.checkBoxBR16, 2, 0);
+            this.tableLayoutPanel18.Controls.Add(this.buttonCmdSend16, 3, 0);
+            this.tableLayoutPanel18.Controls.Add(this.textBoxCmd16, 1, 0);
+            this.tableLayoutPanel18.Controls.Add(this.label7, 0, 0);
+            this.tableLayoutPanel18.Location = new System.Drawing.Point(3, 547);
+            this.tableLayoutPanel18.Name = "tableLayoutPanel18";
+            this.tableLayoutPanel18.RowCount = 1;
+            this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel18.Size = new System.Drawing.Size(489, 28);
+            this.tableLayoutPanel18.TabIndex = 17;
+            // 
+            // checkBoxBR16
+            // 
+            this.checkBoxBR16.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBoxBR16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.checkBoxBR16.Location = new System.Drawing.Point(344, 3);
+            this.checkBoxBR16.Name = "checkBoxBR16";
+            this.checkBoxBR16.Size = new System.Drawing.Size(42, 22);
+            this.checkBoxBR16.TabIndex = 0;
+            this.checkBoxBR16.UseVisualStyleBackColor = true;
+            // 
+            // buttonCmdSend16
+            // 
+            this.buttonCmdSend16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonCmdSend16.Location = new System.Drawing.Point(392, 3);
+            this.buttonCmdSend16.Name = "buttonCmdSend16";
+            this.buttonCmdSend16.Size = new System.Drawing.Size(94, 22);
+            this.buttonCmdSend16.TabIndex = 2;
+            this.buttonCmdSend16.Text = "16";
+            this.buttonCmdSend16.UseVisualStyleBackColor = true;
+            // 
+            // textBoxCmd16
+            // 
+            this.textBoxCmd16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxCmd16.Location = new System.Drawing.Point(51, 3);
+            this.textBoxCmd16.Name = "textBoxCmd16";
+            this.textBoxCmd16.Size = new System.Drawing.Size(287, 25);
+            this.textBoxCmd16.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.Location = new System.Drawing.Point(3, 1);
+            this.label7.Margin = new System.Windows.Forms.Padding(3, 1, 3, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 26);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "16:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel17
             // 
@@ -1673,287 +1984,6 @@ namespace SmartValve2Control
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(50, 20);
             // 
-            // tableLayoutPanel18
-            // 
-            this.tableLayoutPanel18.ColumnCount = 4;
-            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel18.Controls.Add(this.checkBoxBR16, 2, 0);
-            this.tableLayoutPanel18.Controls.Add(this.buttonCmdSend16, 3, 0);
-            this.tableLayoutPanel18.Controls.Add(this.textBoxCmd16, 1, 0);
-            this.tableLayoutPanel18.Controls.Add(this.label7, 0, 0);
-            this.tableLayoutPanel18.Location = new System.Drawing.Point(3, 547);
-            this.tableLayoutPanel18.Name = "tableLayoutPanel18";
-            this.tableLayoutPanel18.RowCount = 1;
-            this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel18.Size = new System.Drawing.Size(489, 28);
-            this.tableLayoutPanel18.TabIndex = 17;
-            // 
-            // checkBoxBR16
-            // 
-            this.checkBoxBR16.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBoxBR16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxBR16.Location = new System.Drawing.Point(344, 3);
-            this.checkBoxBR16.Name = "checkBoxBR16";
-            this.checkBoxBR16.Size = new System.Drawing.Size(42, 22);
-            this.checkBoxBR16.TabIndex = 0;
-            this.checkBoxBR16.UseVisualStyleBackColor = true;
-            // 
-            // buttonCmdSend16
-            // 
-            this.buttonCmdSend16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonCmdSend16.Location = new System.Drawing.Point(392, 3);
-            this.buttonCmdSend16.Name = "buttonCmdSend16";
-            this.buttonCmdSend16.Size = new System.Drawing.Size(94, 22);
-            this.buttonCmdSend16.TabIndex = 2;
-            this.buttonCmdSend16.Text = "16";
-            this.buttonCmdSend16.UseVisualStyleBackColor = true;
-            // 
-            // textBoxCmd16
-            // 
-            this.textBoxCmd16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxCmd16.Location = new System.Drawing.Point(51, 3);
-            this.textBoxCmd16.Name = "textBoxCmd16";
-            this.textBoxCmd16.Size = new System.Drawing.Size(287, 25);
-            this.textBoxCmd16.TabIndex = 1;
-            // 
-            // label7
-            // 
-            this.label7.Location = new System.Drawing.Point(3, 1);
-            this.label7.Margin = new System.Windows.Forms.Padding(3, 1, 3, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 26);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "16:";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tableLayoutPanel19
-            // 
-            this.tableLayoutPanel19.ColumnCount = 4;
-            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel19.Controls.Add(this.checkBoxBR17, 2, 0);
-            this.tableLayoutPanel19.Controls.Add(this.buttonCmdSend17, 3, 0);
-            this.tableLayoutPanel19.Controls.Add(this.textBoxCmd17, 1, 0);
-            this.tableLayoutPanel19.Controls.Add(this.label8, 0, 0);
-            this.tableLayoutPanel19.Location = new System.Drawing.Point(3, 581);
-            this.tableLayoutPanel19.Name = "tableLayoutPanel19";
-            this.tableLayoutPanel19.RowCount = 1;
-            this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel19.Size = new System.Drawing.Size(489, 28);
-            this.tableLayoutPanel19.TabIndex = 18;
-            // 
-            // checkBoxBR17
-            // 
-            this.checkBoxBR17.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBoxBR17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxBR17.Location = new System.Drawing.Point(344, 3);
-            this.checkBoxBR17.Name = "checkBoxBR17";
-            this.checkBoxBR17.Size = new System.Drawing.Size(42, 22);
-            this.checkBoxBR17.TabIndex = 0;
-            this.checkBoxBR17.UseVisualStyleBackColor = true;
-            // 
-            // buttonCmdSend17
-            // 
-            this.buttonCmdSend17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonCmdSend17.Location = new System.Drawing.Point(392, 3);
-            this.buttonCmdSend17.Name = "buttonCmdSend17";
-            this.buttonCmdSend17.Size = new System.Drawing.Size(94, 22);
-            this.buttonCmdSend17.TabIndex = 2;
-            this.buttonCmdSend17.Text = "17";
-            this.buttonCmdSend17.UseVisualStyleBackColor = true;
-            // 
-            // textBoxCmd17
-            // 
-            this.textBoxCmd17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxCmd17.Location = new System.Drawing.Point(51, 3);
-            this.textBoxCmd17.Name = "textBoxCmd17";
-            this.textBoxCmd17.Size = new System.Drawing.Size(287, 25);
-            this.textBoxCmd17.TabIndex = 1;
-            // 
-            // label8
-            // 
-            this.label8.Location = new System.Drawing.Point(3, 1);
-            this.label8.Margin = new System.Windows.Forms.Padding(3, 1, 3, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(34, 26);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "17:";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tableLayoutPanel20
-            // 
-            this.tableLayoutPanel20.ColumnCount = 4;
-            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel20.Controls.Add(this.checkBoxBR18, 2, 0);
-            this.tableLayoutPanel20.Controls.Add(this.buttonCmdSend18, 3, 0);
-            this.tableLayoutPanel20.Controls.Add(this.textBoxCmd18, 1, 0);
-            this.tableLayoutPanel20.Controls.Add(this.label9, 0, 0);
-            this.tableLayoutPanel20.Location = new System.Drawing.Point(3, 615);
-            this.tableLayoutPanel20.Name = "tableLayoutPanel20";
-            this.tableLayoutPanel20.RowCount = 1;
-            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel20.Size = new System.Drawing.Size(489, 28);
-            this.tableLayoutPanel20.TabIndex = 18;
-            // 
-            // checkBoxBR18
-            // 
-            this.checkBoxBR18.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBoxBR18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxBR18.Location = new System.Drawing.Point(344, 3);
-            this.checkBoxBR18.Name = "checkBoxBR18";
-            this.checkBoxBR18.Size = new System.Drawing.Size(42, 22);
-            this.checkBoxBR18.TabIndex = 0;
-            this.checkBoxBR18.UseVisualStyleBackColor = true;
-            // 
-            // buttonCmdSend18
-            // 
-            this.buttonCmdSend18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonCmdSend18.Location = new System.Drawing.Point(392, 3);
-            this.buttonCmdSend18.Name = "buttonCmdSend18";
-            this.buttonCmdSend18.Size = new System.Drawing.Size(94, 22);
-            this.buttonCmdSend18.TabIndex = 2;
-            this.buttonCmdSend18.Text = "18";
-            this.buttonCmdSend18.UseVisualStyleBackColor = true;
-            // 
-            // textBoxCmd18
-            // 
-            this.textBoxCmd18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxCmd18.Location = new System.Drawing.Point(51, 3);
-            this.textBoxCmd18.Name = "textBoxCmd18";
-            this.textBoxCmd18.Size = new System.Drawing.Size(287, 25);
-            this.textBoxCmd18.TabIndex = 1;
-            // 
-            // label9
-            // 
-            this.label9.Location = new System.Drawing.Point(3, 1);
-            this.label9.Margin = new System.Windows.Forms.Padding(3, 1, 3, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(34, 26);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "18:";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tableLayoutPanel21
-            // 
-            this.tableLayoutPanel21.ColumnCount = 4;
-            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel21.Controls.Add(this.checkBoxBR19, 2, 0);
-            this.tableLayoutPanel21.Controls.Add(this.buttonCmdSend19, 3, 0);
-            this.tableLayoutPanel21.Controls.Add(this.textBoxCmd19, 1, 0);
-            this.tableLayoutPanel21.Controls.Add(this.label10, 0, 0);
-            this.tableLayoutPanel21.Location = new System.Drawing.Point(3, 649);
-            this.tableLayoutPanel21.Name = "tableLayoutPanel21";
-            this.tableLayoutPanel21.RowCount = 1;
-            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel21.Size = new System.Drawing.Size(489, 28);
-            this.tableLayoutPanel21.TabIndex = 18;
-            // 
-            // checkBoxBR19
-            // 
-            this.checkBoxBR19.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBoxBR19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxBR19.Location = new System.Drawing.Point(344, 3);
-            this.checkBoxBR19.Name = "checkBoxBR19";
-            this.checkBoxBR19.Size = new System.Drawing.Size(42, 22);
-            this.checkBoxBR19.TabIndex = 0;
-            this.checkBoxBR19.UseVisualStyleBackColor = true;
-            // 
-            // buttonCmdSend19
-            // 
-            this.buttonCmdSend19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonCmdSend19.Location = new System.Drawing.Point(392, 3);
-            this.buttonCmdSend19.Name = "buttonCmdSend19";
-            this.buttonCmdSend19.Size = new System.Drawing.Size(94, 22);
-            this.buttonCmdSend19.TabIndex = 2;
-            this.buttonCmdSend19.Text = "19";
-            this.buttonCmdSend19.UseVisualStyleBackColor = true;
-            // 
-            // textBoxCmd19
-            // 
-            this.textBoxCmd19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxCmd19.Location = new System.Drawing.Point(51, 3);
-            this.textBoxCmd19.Name = "textBoxCmd19";
-            this.textBoxCmd19.Size = new System.Drawing.Size(287, 25);
-            this.textBoxCmd19.TabIndex = 1;
-            // 
-            // label10
-            // 
-            this.label10.Location = new System.Drawing.Point(3, 1);
-            this.label10.Margin = new System.Windows.Forms.Padding(3, 1, 3, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(34, 26);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "19:";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tableLayoutPanel22
-            // 
-            this.tableLayoutPanel22.ColumnCount = 4;
-            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel22.Controls.Add(this.checkBoxBR20, 2, 0);
-            this.tableLayoutPanel22.Controls.Add(this.buttonCmdSend20, 3, 0);
-            this.tableLayoutPanel22.Controls.Add(this.textBoxCmd20, 1, 0);
-            this.tableLayoutPanel22.Controls.Add(this.label11, 0, 0);
-            this.tableLayoutPanel22.Location = new System.Drawing.Point(3, 683);
-            this.tableLayoutPanel22.Name = "tableLayoutPanel22";
-            this.tableLayoutPanel22.RowCount = 1;
-            this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel22.Size = new System.Drawing.Size(489, 28);
-            this.tableLayoutPanel22.TabIndex = 18;
-            // 
-            // checkBoxBR20
-            // 
-            this.checkBoxBR20.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBoxBR20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxBR20.Location = new System.Drawing.Point(344, 3);
-            this.checkBoxBR20.Name = "checkBoxBR20";
-            this.checkBoxBR20.Size = new System.Drawing.Size(42, 22);
-            this.checkBoxBR20.TabIndex = 0;
-            this.checkBoxBR20.UseVisualStyleBackColor = true;
-            // 
-            // buttonCmdSend20
-            // 
-            this.buttonCmdSend20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonCmdSend20.Location = new System.Drawing.Point(392, 3);
-            this.buttonCmdSend20.Name = "buttonCmdSend20";
-            this.buttonCmdSend20.Size = new System.Drawing.Size(94, 22);
-            this.buttonCmdSend20.TabIndex = 2;
-            this.buttonCmdSend20.Text = "20";
-            this.buttonCmdSend20.UseVisualStyleBackColor = true;
-            // 
-            // textBoxCmd20
-            // 
-            this.textBoxCmd20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxCmd20.Location = new System.Drawing.Point(51, 3);
-            this.textBoxCmd20.Name = "textBoxCmd20";
-            this.textBoxCmd20.Size = new System.Drawing.Size(287, 25);
-            this.textBoxCmd20.TabIndex = 1;
-            // 
-            // label11
-            // 
-            this.label11.Location = new System.Drawing.Point(3, 1);
-            this.label11.Margin = new System.Windows.Forms.Padding(3, 1, 3, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(34, 26);
-            this.label11.TabIndex = 3;
-            this.label11.Text = "20:";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // SmartValveControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -1968,7 +1998,8 @@ namespace SmartValve2Control
             this.splitContainer4.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.tabControlMode.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -1991,6 +2022,16 @@ namespace SmartValve2Control
             this.splitContainer1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel22.ResumeLayout(false);
+            this.tableLayoutPanel22.PerformLayout();
+            this.tableLayoutPanel21.ResumeLayout(false);
+            this.tableLayoutPanel21.PerformLayout();
+            this.tableLayoutPanel20.ResumeLayout(false);
+            this.tableLayoutPanel20.PerformLayout();
+            this.tableLayoutPanel19.ResumeLayout(false);
+            this.tableLayoutPanel19.PerformLayout();
+            this.tableLayoutPanel18.ResumeLayout(false);
+            this.tableLayoutPanel18.PerformLayout();
             this.tableLayoutPanel17.ResumeLayout(false);
             this.tableLayoutPanel17.PerformLayout();
             this.tableLayoutPanel16.ResumeLayout(false);
@@ -2034,16 +2075,6 @@ namespace SmartValve2Control
             this.groupBox4.PerformLayout();
             this.statusBottom.ResumeLayout(false);
             this.statusBottom.PerformLayout();
-            this.tableLayoutPanel18.ResumeLayout(false);
-            this.tableLayoutPanel18.PerformLayout();
-            this.tableLayoutPanel19.ResumeLayout(false);
-            this.tableLayoutPanel19.PerformLayout();
-            this.tableLayoutPanel20.ResumeLayout(false);
-            this.tableLayoutPanel20.PerformLayout();
-            this.tableLayoutPanel21.ResumeLayout(false);
-            this.tableLayoutPanel21.PerformLayout();
-            this.tableLayoutPanel22.ResumeLayout(false);
-            this.tableLayoutPanel22.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2057,7 +2088,7 @@ namespace SmartValve2Control
         private System.Windows.Forms.ToolStripPanel LeftToolStripPanel;
         private System.Windows.Forms.ToolStripContentPanel ContentPanel;
         private System.Windows.Forms.SplitContainer splitContainer4;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControlMode;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button buttonClear;
@@ -2202,6 +2233,8 @@ namespace SmartValve2Control
         private Button buttonCmdSend16;
         private TextBox textBoxCmd16;
         private Label label7;
+        private GroupBox groupBox5;
+        private Label labelMode;
     }
 }
 

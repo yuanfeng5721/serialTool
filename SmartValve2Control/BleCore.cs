@@ -139,7 +139,13 @@ namespace SmartValve2Control
         public void StopBleDeviceWatcher()
         {
             if (Watcher != null)
+            {
                 this.Watcher.Stop();
+                Watcher.Received -= OnAdvertisementReceived;
+                Watcher = null;
+                DeviceList.RemoveRange(0, DeviceList.Count);
+                Console.WriteLine("停止发现设备..");
+            }
         }
 
         /// <summary>

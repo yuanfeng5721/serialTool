@@ -137,8 +137,8 @@
     <Setting Name="cmdbr20" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="设置" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="modeIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>
