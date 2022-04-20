@@ -35,13 +35,13 @@ namespace SmartValve2Control
             this.openFileDialogLog = new System.Windows.Forms.OpenFileDialog();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.buttonClear = new System.Windows.Forms.Button();
+            this.checkBoxShowTime = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.labelMode = new System.Windows.Forms.Label();
             this.tabControlMode = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.buttonClear = new System.Windows.Forms.Button();
-            this.checkBoxShowTime = new System.Windows.Forms.CheckBox();
             this.groupBoxCom = new System.Windows.Forms.GroupBox();
             this.buttonOpenCom = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -186,10 +186,10 @@ namespace SmartValve2Control
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.tabControlMode.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.groupBoxCom.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -268,6 +268,37 @@ namespace SmartValve2Control
             this.splitContainer4.SplitterDistance = 147;
             this.splitContainer4.TabIndex = 21;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.buttonClear);
+            this.groupBox2.Controls.Add(this.checkBoxShowTime);
+            this.groupBox2.Location = new System.Drawing.Point(737, 13);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(212, 127);
+            this.groupBox2.TabIndex = 8;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Operation";
+            // 
+            // buttonClear
+            // 
+            this.buttonClear.Location = new System.Drawing.Point(7, 72);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(127, 23);
+            this.buttonClear.TabIndex = 1;
+            this.buttonClear.Text = "Clear Message";
+            this.buttonClear.UseVisualStyleBackColor = true;
+            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
+            // 
+            // checkBoxShowTime
+            // 
+            this.checkBoxShowTime.AutoSize = true;
+            this.checkBoxShowTime.Location = new System.Drawing.Point(7, 32);
+            this.checkBoxShowTime.Name = "checkBoxShowTime";
+            this.checkBoxShowTime.Size = new System.Drawing.Size(101, 19);
+            this.checkBoxShowTime.TabIndex = 0;
+            this.checkBoxShowTime.Text = "Show time";
+            this.checkBoxShowTime.UseVisualStyleBackColor = true;
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.labelMode);
@@ -316,37 +347,6 @@ namespace SmartValve2Control
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "COM";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.buttonClear);
-            this.groupBox2.Controls.Add(this.checkBoxShowTime);
-            this.groupBox2.Location = new System.Drawing.Point(737, 13);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(212, 127);
-            this.groupBox2.TabIndex = 8;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Operation";
-            // 
-            // buttonClear
-            // 
-            this.buttonClear.Location = new System.Drawing.Point(7, 72);
-            this.buttonClear.Name = "buttonClear";
-            this.buttonClear.Size = new System.Drawing.Size(127, 23);
-            this.buttonClear.TabIndex = 1;
-            this.buttonClear.Text = "Clear Message";
-            this.buttonClear.UseVisualStyleBackColor = true;
-            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
-            // 
-            // checkBoxShowTime
-            // 
-            this.checkBoxShowTime.AutoSize = true;
-            this.checkBoxShowTime.Location = new System.Drawing.Point(7, 32);
-            this.checkBoxShowTime.Name = "checkBoxShowTime";
-            this.checkBoxShowTime.Size = new System.Drawing.Size(101, 19);
-            this.checkBoxShowTime.TabIndex = 0;
-            this.checkBoxShowTime.Text = "Show time";
-            this.checkBoxShowTime.UseVisualStyleBackColor = true;
             // 
             // groupBoxCom
             // 
@@ -514,6 +514,7 @@ namespace SmartValve2Control
             this.buttonBleSearch.TabIndex = 2;
             this.buttonBleSearch.Text = "Search";
             this.buttonBleSearch.UseVisualStyleBackColor = true;
+            this.buttonBleSearch.Visible = false;
             this.buttonBleSearch.Click += new System.EventHandler(this.buttonBleSearch_Click);
             // 
             // comboBoxBleDevice
@@ -1998,11 +1999,11 @@ namespace SmartValve2Control
             this.splitContainer4.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.tabControlMode.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBoxCom.ResumeLayout(false);
             this.groupBoxCom.PerformLayout();
             this.tabPage2.ResumeLayout(false);
