@@ -45,6 +45,12 @@ namespace SmartValve2Control
         private Boolean asyncLock = false;
 
         private DeviceWatcher deviceWatcher;
+        private Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementWatcher Watcher = null;
+
+        /// <summary>
+        /// 存储检测到的设备
+        /// </summary>
+        public List<BluetoothLEDevice> DeviceList { get; private set; }
 
         private Boolean bConnected = false;
 
@@ -55,9 +61,9 @@ namespace SmartValve2Control
         public event eventRun ValueChanged;
         public event eventReceive Receive;
 
-
         public BleCore(string serviceGuid, string writeCharacteristicGuid, string notifyCharacteristicGuid)
         {
+            DeviceList = new List<BluetoothLEDevice>();
             ServiceGuid = serviceGuid;
             WriteCharacteristicGuid = writeCharacteristicGuid;
             NotifyCharacteristicGuid = notifyCharacteristicGuid;
@@ -85,6 +91,36 @@ namespace SmartValve2Control
             ValueChanged(MsgType.NotifyTxt, msg);
         }
 
+        /// <summary>
+        /// 搜索蓝牙设备
+        /// </summary>
+        public void StartBleDeviceWatcher2()
+        {
+            Watcher = new Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementWatcher();
+
+            Watcher.ScanningMode = Windows.Devices.Bluetooth.Advertisement.BluetoothLEScanningMode.Active;
+
+            // only activate the watcher when we're recieving values >= -80
+            Watcher.SignalStrengthFilter.InRangeThresholdInDBm = -80;
+
+            // stop watching if the value drops below -90 (user walked away)
+            Watcher.SignalStrengthFilter.OutOfRangeThresholdInDBm = -90;
+
+            // register callback for when we see an advertisements
+            Watcher.Received += OnAdvertisementReceived;
+
+            // wait 5 seconds to make sure the device is really out of range
+            Watcher.SignalStrengthFilter.OutOfRangeTimeout = TimeSpan.FromMilliseconds(5000);
+            Watcher.SignalStrengthFilter.SamplingInterval = TimeSpan.FromMilliseconds(2000);
+
+            // starting watching for advertisements
+            Watcher.Start();
+
+            string msg = "自动发现设备中..";
+
+            ValueChanged(MsgType.NotifyTxt, msg);
+        }
+
         public void StopBleDeviceWatcher()
         {
             if (deviceWatcher != null)
@@ -96,6 +132,21 @@ namespace SmartValve2Control
                 // Stop the watcher.
                 deviceWatcher.Stop();
                 deviceWatcher = null;
+            }
+        }
+
+        /// <summary>
+        /// 停止搜索蓝牙
+        /// </summary>
+        public void StopBleDeviceWatcher2()
+        {
+            if (Watcher != null)
+            {
+                Watcher.Received -= OnAdvertisementReceived;
+                Watcher.Stop();
+                Watcher = null;
+                DeviceList.RemoveRange(0, DeviceList.Count);
+                //Console.WriteLine("停止发现设备..");
             }
         }
 
@@ -119,6 +170,41 @@ namespace SmartValve2Control
             }
 
 
+        }
+
+        private void OnAdvertisementReceived(Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementWatcher watcher, Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementReceivedEventArgs eventArgs)
+        {
+            BluetoothLEDevice.FromBluetoothAddressAsync(eventArgs.BluetoothAddress).Completed = (asyncInfo, asyncStatus) =>
+            {
+                if (asyncStatus == AsyncStatus.Completed)
+                {
+                    if (asyncInfo.GetResults() == null)
+                    {
+                        //Console.WriteLine("没有得到结果集");
+                    }
+                    else
+                    {
+                        BluetoothLEDevice currentDevice = asyncInfo.GetResults();
+
+                        if (currentDevice.Name == CurrentDeviceName)
+                        {
+                            if (DeviceList.FindIndex((x) => { return x.Name.Equals(currentDevice.Name); }) < 0)
+                            {
+                                CurrentDevice = CurrentDevice;
+                                this.DeviceList.Add(CurrentDevice);
+                                Matching(currentDevice.DeviceId);
+                            }
+                        }
+                        //if (DeviceList.FindIndex((x) => { return x.Name.Equals(currentDevice.Name); }) < 0)
+                        //{
+                        //    this.DeviceList.Add(currentDevice);
+                        //    DeviceWatcherChanged?.Invoke(currentDevice);
+                        //}
+
+                    }
+
+                }
+            };
         }
 
         /// <summary>
@@ -428,7 +514,7 @@ namespace SmartValve2Control
                 string msg = "Successed";
                 ValueChanged(MsgType.NotifyGattCommunication, msg);
             }
-            else if(str.IndexOf("BLE DISCONNECTED") >= 0)
+            else if(str.IndexOf("BLE CONNECT TIMEOUT") >= 0)
             {
                 string msg = "DISCONNECTED";
                 ValueChanged(MsgType.NotifyGattCommunication, msg);

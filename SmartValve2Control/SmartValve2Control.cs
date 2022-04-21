@@ -1009,27 +1009,39 @@ namespace SmartValve2Control
             richTextBoxState.Clear();
         }
 
+        public static void RunAsync(Action action)
+        {
+            ((Action)(delegate ()
+            {
+                action.Invoke();
+            })).BeginInvoke(null, null);
+        }
+
         private void bluetoothOperate(Boolean onoff)
         {
             if (onoff)
             {
                 bluetooth.CurrentDeviceName = comboBoxBleDevice.Text;//"ZLG BLE";
-                bluetooth.StartBleDeviceWatcher();
+                bluetooth.StartBleDeviceWatcher2();
                 comboBoxBleDevice.Enabled = false;
                 //buttonConnect.Enabled = true;
                 //_isBleDeviceConnected = true;
             }
             else
             {
-                byte[] cmd = System.Text.Encoding.ASCII.GetBytes("BLE DISCONNECT\r\n");
-                bluetooth.Write(cmd);
-                Thread.Sleep(500);
-                //bluetooth.Write(cmd);
-                bluetooth.StopBleDeviceWatcher();
-                bluetooth.Dispose();
-                comboBoxBleDevice.Enabled = true;
-                buttonConnect.Enabled = true;
-                _isBleDeviceConnected = false;
+                RunAsync(() =>
+                {
+                    byte[] cmd = System.Text.Encoding.ASCII.GetBytes("BLE DISCONNECT\r\n");
+                    bluetooth.Write(cmd);
+                    Thread.Sleep(500);
+                    bluetooth.StopBleDeviceWatcher2();
+                    Thread.Sleep(5000);
+                    //bluetooth.StopBleDeviceWatcher2();
+                    bluetooth.Dispose();
+                    comboBoxBleDevice.Enabled = true;
+                    buttonConnect.Enabled = true;
+                    _isBleDeviceConnected = false;
+                }); 
             }
         }
 
@@ -1051,7 +1063,7 @@ namespace SmartValve2Control
                 _isBleDeviceConnected = false;
                 buttonConnect.Enabled = false;
                 buttonConnect.Text = "Disconnect";
-                ble_timer.Interval = 1000 * 60 * 1;
+                ble_timer.Interval = 1000 * 40 * 1;
                 ble_timer.AutoReset = false;
                 ble_timer.Elapsed += bluetoothCheckStates;
                 ble_timer.Start();
