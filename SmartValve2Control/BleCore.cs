@@ -247,7 +247,7 @@ namespace SmartValve2Control
                 }
 
             }
-            else
+            else if(CurrentDeviceMAC != null)
             {
                 bConnected = true;
                 string msg = "设备已连接";
@@ -399,7 +399,7 @@ namespace SmartValve2Control
                 if (asyncStatus == AsyncStatus.Completed)
                 {
                     GattCommunicationStatus status = asyncInfo.GetResults();
-                    string msg = "收通知对象=" + status;
+                    string msg = "接收通知对象=" + status;
                     ValueChanged(MsgType.NotifyTxt, msg);
                     if (status == GattCommunicationStatus.Unreachable)
                     {
@@ -422,7 +422,17 @@ namespace SmartValve2Control
             byte[] data;
             CryptographicBuffer.CopyToByteArray(args.CharacteristicValue, out data);
             //string str = BitConverter.ToString(data);
-            //string str = System.Text.Encoding.Default.GetString(data);
+            string str = System.Text.Encoding.Default.GetString(data);
+            if(str.IndexOf("BLE CONNECTED") >= 0)
+            {
+                string msg = "Successed";
+                ValueChanged(MsgType.NotifyGattCommunication, msg);
+            }
+            else if(str.IndexOf("BLE DISCONNECTED") >= 0)
+            {
+                string msg = "DISCONNECTED";
+                ValueChanged(MsgType.NotifyGattCommunication, msg);
+            }
             //ValueChanged(MsgType.BLEData, str, data);
             Receive(data.Length, data);
 

@@ -14,6 +14,7 @@ using Windows.Devices.Bluetooth;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using System.Collections.Concurrent;
 using SmartValve2Control.Properties;
+using System.Threading;
 
 namespace SmartValve2Control
 {
@@ -37,7 +38,7 @@ namespace SmartValve2Control
         private ConcurrentQueue<byte[]> serial_recv_buffer = new ConcurrentQueue<byte[]>();
 
         Encoding encoder = Encoding.Default;
-        const int cmdlistcount = 20;
+        const int cmdlistcount = 25;
 
         TextBox[] TextBox_Cmds = new TextBox[cmdlistcount];
         Button[] Button_Cmds = new Button[cmdlistcount];
@@ -49,6 +50,9 @@ namespace SmartValve2Control
         String _serviceGuid = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
         String _writeCharacteristicGuid = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
         String _notifyCharacteristicGuid = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
+
+        Thread t_bluecheck;
+        Boolean bluetoothCheck = true;
 
         private bool _isBleDeviceConnected = false;
 
@@ -116,6 +120,7 @@ namespace SmartValve2Control
             //
             comboBoxBleDevice.Text = "ZLG BLE";//"ZLG BLE"
             _isBleDeviceConnected = false;
+            //t_bluecheck = new Thread(new ThreadStart(bluetooth_connect_check));
         }
 
         /// <summary>
@@ -167,14 +172,18 @@ namespace SmartValve2Control
             comboBoxStopBit.Text = config.comboBoxStopBit;
 
             tabControlMode.SelectedIndex = config.modeIndex;
+            checkBoxShowTime.Checked = config.showtime;
 
             Type t = typeof(Settings);
 
             for (int i = 0; i < cmdlistcount; i++)
             {
                 int index = i + 1;
-                TextBox_Cmds[i].Text = (String)t.GetProperty("cmd" + index).GetValue(config);
-                CheckBox_Cmds[i].Checked = (bool)t.GetProperty("cmdbr" + index).GetValue(config);
+                String key;
+                key = "cmd" + index.ToString();
+                TextBox_Cmds[i].Text = (String)t.GetProperty(key).GetValue(config);
+                key = "cmdbr" + index.ToString();
+                CheckBox_Cmds[i].Checked = (bool)t.GetProperty(key).GetValue(config);
             }
         }
 
@@ -186,6 +195,7 @@ namespace SmartValve2Control
             config.comboBoxByteSize = comboBoxByteSize.Text;
             config.comboBoxStopBit = comboBoxStopBit.Text;
             config.modeIndex = tabControlMode.SelectedIndex;
+            config.showtime = checkBoxShowTime.Checked;
 
             Type t = typeof(Settings);
 
@@ -371,7 +381,7 @@ namespace SmartValve2Control
             if (serialPort.IsOpen)
             {
                 buttonOpenCom.Image = Properties.Resources.open;
-                buttonOpenCom.Text = "Close";
+                buttonOpenCom.Text = "  Close";
 
                 comboBoxCom.Enabled = false;
                 comboBoxBaudRate.Enabled = false;
@@ -382,7 +392,7 @@ namespace SmartValve2Control
             else
             {
                 buttonOpenCom.Image = Properties.Resources.close;
-                buttonOpenCom.Text = "Open";
+                buttonOpenCom.Text = "  Open";
 
                 comboBoxCom.Enabled = true;
                 comboBoxBaudRate.Enabled = true;
@@ -411,7 +421,7 @@ namespace SmartValve2Control
             }
 
             buttonOpenCom.Image = Properties.Resources.close;
-            buttonOpenCom.Text = "Open";
+            buttonOpenCom.Text = "  Open";
         }
 
         private void buttonOpenCom_Click(object sender, EventArgs e)
@@ -494,13 +504,14 @@ namespace SmartValve2Control
                     str_tmp += "[" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "]";
                 }
 
-                tn_show_time = 10;
+                tn_show_time = 3;
             }
             //if (chk_recv_hex.Checked)
             //{
             //    str_tmp += byte_to_hex(buffer);
             //}
             //else
+            //if (checkBoxShowTime.Checked)
             {
                 str_tmp += encoder.GetString(buffer);
             }
@@ -1012,7 +1023,8 @@ namespace SmartValve2Control
             {
                 byte[] cmd = System.Text.Encoding.ASCII.GetBytes("BLE DISCONNECT\r\n");
                 bluetooth.Write(cmd);
-                bluetooth.Write(cmd);
+                Thread.Sleep(500);
+                //bluetooth.Write(cmd);
                 bluetooth.StopBleDeviceWatcher();
                 bluetooth.Dispose();
                 comboBoxBleDevice.Enabled = true;
@@ -1025,6 +1037,8 @@ namespace SmartValve2Control
         {
             if(!_isBleDeviceConnected)
             {
+                bluetoothCheck = false;
+                t_bluecheck.Abort();
                 buttonConnect.Text = "Connect";
                 bluetoothOperate(false);
             }
@@ -1034,6 +1048,7 @@ namespace SmartValve2Control
         {
             if (buttonConnect.Text == "Connect")
             {
+                _isBleDeviceConnected = false;
                 buttonConnect.Enabled = false;
                 buttonConnect.Text = "Disconnect";
                 ble_timer.Interval = 1000 * 60 * 1;
@@ -1087,6 +1102,16 @@ namespace SmartValve2Control
             comboBoxBleDevice.SelectedIndex = 0; // 默认选中的是第一个端口（小的端口）
         }
 
+        private void bluetooth_connect_check()
+        {
+            byte[] cmd = System.Text.Encoding.ASCII.GetBytes("BLE CONNECT\r\n");
+            while(bluetoothCheck)
+            {
+                bluetooth.Write(cmd);
+                Thread.Sleep(500);
+            }
+        }
+
         public void Bluetooth_ValueChanged(MsgType type, string str, byte[] data = null)
         {
             if (str != null)
@@ -1099,20 +1124,43 @@ namespace SmartValve2Control
                 {
                     if (str == "Success")
                     {
+                        bluetoothCheck = true;
+                        t_bluecheck = new Thread(new ThreadStart(bluetooth_connect_check));
+                        t_bluecheck.Start();
+                        //byte[] cmd = System.Text.Encoding.ASCII.GetBytes("BLE CONNECT\r\n");
+                        //bluetooth.Write(cmd);
+                        ////Thread.Sleep(500);
+                        //bluetooth.Write(cmd);
+                        ////Thread.Sleep(500);
+                        ////bluetooth.Write(cmd);
+                    }
+                    else if (str == "Successed")
+                    {
+                        str = "BLE connected OK!";
+                        bluetoothCheck = false;
+                        t_bluecheck.Abort();
                         ble_timer.Stop();
                         state_printf(str, Color.Green);
                         buttonConnect.Enabled = true;
                         _isBleDeviceConnected = true;
-                        byte[] cmd = System.Text.Encoding.ASCII.GetBytes("BLE CONNECT\r\n");
-                        bluetooth.Write(cmd);
-                        bluetooth.Write(cmd);
+                    }
+                    else if (str == "DISCONNECTED")
+                    {
+                        buttonConnect.Enabled = false;
+                        buttonConnect.Text = "Connect";
+                        bluetooth.StopBleDeviceWatcher();
+                        bluetooth.Dispose();
+                        comboBoxBleDevice.Enabled = true;
+                        buttonConnect.Enabled = true;
+                        _isBleDeviceConnected = false;
                     }
                 }
                 else if (type == MsgType.NotifyStates)
                 {
                     if (str == "Success")
                     {
-                        state_printf(str, Color.Green);
+                        String rtl = "BLE Disconnected!";
+                        state_printf(rtl, Color.Red);
                     }
                 }
                 else
