@@ -504,7 +504,12 @@ namespace SmartValve2Control
                     str_tmp += "[" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "]";
                 }
 
-                tn_show_time = 3;
+                tn_show_time = 4;
+                str_tmp += encoder.GetString(buffer).Replace("\r\n", "\r\n[" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "]");
+            }
+            else
+            {
+                str_tmp += encoder.GetString(buffer);
             }
             //if (chk_recv_hex.Checked)
             //{
@@ -512,9 +517,9 @@ namespace SmartValve2Control
             //}
             //else
             //if (checkBoxShowTime.Checked)
-            {
-                str_tmp += encoder.GetString(buffer);
-            }
+            //{
+            //    str_tmp += encoder.GetString(buffer);
+            //}
 
             {
                 if (_recv_file)
@@ -996,7 +1001,10 @@ namespace SmartValve2Control
         {
             if (tabControlMode.SelectedIndex == 0)
             {
-                bluetoothOperate(false);
+                if(_isBleDeviceConnected)
+                {
+                    bluetoothOperate(false);
+                }
                 labelMode.Text = "UART";
             }
             else
@@ -1033,9 +1041,9 @@ namespace SmartValve2Control
                 {
                     byte[] cmd = System.Text.Encoding.ASCII.GetBytes("BLE DISCONNECT\r\n");
                     bluetooth.Write(cmd);
-                    Thread.Sleep(500);
+                    Delay(500);
                     bluetooth.StopBleDeviceWatcher2();
-                    Thread.Sleep(5000);
+                    Delay(5000);
                     //bluetooth.StopBleDeviceWatcher2();
                     bluetooth.Dispose();
                     comboBoxBleDevice.Enabled = true;
@@ -1050,7 +1058,7 @@ namespace SmartValve2Control
             if(!_isBleDeviceConnected)
             {
                 bluetoothCheck = false;
-                t_bluecheck.Abort();
+                //t_bluecheck.Abort();
                 buttonConnect.Text = "Connect";
                 bluetoothOperate(false);
             }
@@ -1117,10 +1125,11 @@ namespace SmartValve2Control
         private void bluetooth_connect_check()
         {
             byte[] cmd = System.Text.Encoding.ASCII.GetBytes("BLE CONNECT\r\n");
-            while(bluetoothCheck)
+            Delay(2000);
+            while (bluetoothCheck)
             {
                 bluetooth.Write(cmd);
-                Thread.Sleep(500);
+                Delay(1000);
             }
         }
 
@@ -1137,6 +1146,7 @@ namespace SmartValve2Control
                     if (str == "Success")
                     {
                         bluetoothCheck = true;
+                        t_bluecheck = null;
                         t_bluecheck = new Thread(new ThreadStart(bluetooth_connect_check));
                         t_bluecheck.Start();
                         //byte[] cmd = System.Text.Encoding.ASCII.GetBytes("BLE CONNECT\r\n");
@@ -1150,7 +1160,8 @@ namespace SmartValve2Control
                     {
                         str = "BLE connected OK!";
                         bluetoothCheck = false;
-                        t_bluecheck.Abort();
+                        //t_bluecheck.Abort();
+                        Delay(500);
                         ble_timer.Stop();
                         state_printf(str, Color.Green);
                         buttonConnect.Enabled = true;
@@ -1246,6 +1257,27 @@ namespace SmartValve2Control
             }
         }
 
+        private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            switch (e.ClickedItem.Name)
+            {
+                case "toolStripMenuItemCopy":
+                    richTextBoxMessage.Copy();
+                    break;
+                case "toolStripMenuItemSelectAll":
+                    richTextBoxMessage.Focus();
+                    richTextBoxMessage.SelectAll();
+                    break;
+                case "toolStripMenuItemCopy2":
+                    richTextBoxState.Copy();
+                    break;
+                case "toolStripMenuItemSeleceAll2":
+                    richTextBoxState.Focus();
+                    richTextBoxState.SelectAll();
+                    break;
+            }
+        }
+
         void BluetoothReceive(int receivebytes, byte[] data)
         {
             int bytes = receivebytes;
@@ -1290,6 +1322,16 @@ namespace SmartValve2Control
                     MessageBoxEx.Show(this, ex.Message, "消息", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }));
             }
+        }
+
+        public static void Delay(int ms)
+        {
+            DateTime current = DateTime.Now;
+            while (current.AddMilliseconds(ms) > DateTime.Now)
+            {
+                Application.DoEvents();
+            }
+            return;
         }
     }
 

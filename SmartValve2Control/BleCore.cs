@@ -37,11 +37,10 @@ namespace SmartValve2Control
         public string NotifyCharacteristicGuid { get; set; }
 
 
-        private const int CHARACTERISTIC_INDEX = 0;
+        private int CHARACTERISTIC_INDEX = 0;
         //特性通知类型通知启用
         private const GattClientCharacteristicConfigurationDescriptorValue CHARACTERISTIC_NOTIFICATION_TYPE = GattClientCharacteristicConfigurationDescriptorValue.Notify;
-
-
+        
         private Boolean asyncLock = false;
 
         private DeviceWatcher deviceWatcher;
@@ -450,7 +449,7 @@ namespace SmartValve2Control
                 if (asyncStatus == AsyncStatus.Completed)
                 {
                     GattCharacteristicsResult result = asyncInfo.GetResults();
-                    msg = "特征对象=" + result.Status;
+                    msg = "特征对象=" + result.Status +" "+ result.Characteristics.Count;
                     ValueChanged(MsgType.NotifyTxt, msg);
                     if (result.Characteristics.Count > 0)
                     {
@@ -479,28 +478,35 @@ namespace SmartValve2Control
         {
             //string msg = "收通知对象=" + CurrentDevice.ConnectionStatus;
             //ValueChanged(MsgType.NotifyTxt, msg);
-
-            characteristic.WriteClientCharacteristicConfigurationDescriptorAsync(CHARACTERISTIC_NOTIFICATION_TYPE).Completed = async (asyncInfo, asyncStatus) =>
+            Delay(2000);
+            try
             {
-                if (asyncStatus == AsyncStatus.Completed)
+                characteristic.WriteClientCharacteristicConfigurationDescriptorAsync(CHARACTERISTIC_NOTIFICATION_TYPE).Completed = async (asyncInfo, asyncStatus) =>
                 {
-                    GattCommunicationStatus status = asyncInfo.GetResults();
-                    string msg = "接收通知对象=" + status;
-                    ValueChanged(MsgType.NotifyTxt, msg);
-                    if (status == GattCommunicationStatus.Unreachable)
+                    if (asyncStatus == AsyncStatus.Completed)
                     {
-                        msg = "设备不可用";
+                        GattCommunicationStatus status = asyncInfo.GetResults();
+                        string msg = "接收通知对象=" + status;
                         ValueChanged(MsgType.NotifyTxt, msg);
-                        if (CurrentNotifyCharacteristic != null && !asyncLock)
+                        if (status == GattCommunicationStatus.Unreachable)
                         {
-                            await EnableNotifications(CurrentNotifyCharacteristic);
+                            msg = "设备不可用";
+                            ValueChanged(MsgType.NotifyTxt, msg);
+                            if (CurrentNotifyCharacteristic != null && !asyncLock)
+                            {
+                                await EnableNotifications(CurrentNotifyCharacteristic);
+                            }
                         }
+                        asyncLock = false;
+                        msg = "" + status;
+                        ValueChanged(MsgType.NotifyGattCommunication, msg);
                     }
-                    asyncLock = false;
-                    msg = "" + status;
-                    ValueChanged(MsgType.NotifyGattCommunication, msg);
-                }
-            };
+                };
+            }
+            catch(Exception e)
+            {
+                ValueChanged(MsgType.NotifyTxt, "exception happen");
+            }  
         }
 
         private void Characteristic_ValueChanged(GattCharacteristic sender, GattValueChangedEventArgs args)
@@ -522,6 +528,15 @@ namespace SmartValve2Control
             //ValueChanged(MsgType.BLEData, str, data);
             Receive(data.Length, data);
 
+        }
+        private static void Delay(int ms)
+        {
+            DateTime current = DateTime.Now;
+            while (current.AddMilliseconds(ms) > DateTime.Now)
+            {
+                Application.DoEvents();
+            }
+            return;
         }
     }
 

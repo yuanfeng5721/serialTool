@@ -31,6 +31,7 @@ namespace SmartValve2Control
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SmartValveControl));
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.openFileDialogLog = new System.Windows.Forms.OpenFileDialog();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
@@ -208,6 +209,12 @@ namespace SmartValve2Control
             this.label16 = new System.Windows.Forms.Label();
             this.splitContainer7 = new System.Windows.Forms.SplitContainer();
             this.splitContainer8 = new System.Windows.Forms.SplitContainer();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemSelectAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemSeleceAll2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemCopy2 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
@@ -276,6 +283,8 @@ namespace SmartValve2Control
             this.splitContainer8.Panel1.SuspendLayout();
             this.splitContainer8.Panel2.SuspendLayout();
             this.splitContainer8.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
+            this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialogLog
@@ -634,8 +643,10 @@ namespace SmartValve2Control
             // 
             // richTextBoxMessage
             // 
+            this.richTextBoxMessage.ContextMenuStrip = this.contextMenuStrip1;
             this.richTextBoxMessage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBoxMessage.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBoxMessage.ForeColor = System.Drawing.Color.Black;
             this.richTextBoxMessage.Location = new System.Drawing.Point(0, 0);
             this.richTextBoxMessage.Name = "richTextBoxMessage";
             this.richTextBoxMessage.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
@@ -645,6 +656,7 @@ namespace SmartValve2Control
             // 
             // richTextBoxState
             // 
+            this.richTextBoxState.ContextMenuStrip = this.contextMenuStrip2;
             this.richTextBoxState.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBoxState.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBoxState.Location = new System.Drawing.Point(0, 0);
@@ -2385,12 +2397,57 @@ namespace SmartValve2Control
             this.splitContainer8.SplitterDistance = 207;
             this.splitContainer8.TabIndex = 0;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemSelectAll,
+            this.toolStripMenuItemCopy});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(143, 52);
+            this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
+            // 
+            // toolStripMenuItemSelectAll
+            // 
+            this.toolStripMenuItemSelectAll.Name = "toolStripMenuItemSelectAll";
+            this.toolStripMenuItemSelectAll.Size = new System.Drawing.Size(142, 24);
+            this.toolStripMenuItemSelectAll.Text = "SelectAll";
+            // 
+            // toolStripMenuItemCopy
+            // 
+            this.toolStripMenuItemCopy.Name = "toolStripMenuItemCopy";
+            this.toolStripMenuItemCopy.Size = new System.Drawing.Size(142, 24);
+            this.toolStripMenuItemCopy.Text = "Cpoy";
+            // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemSeleceAll2,
+            this.toolStripMenuItemCopy2});
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(143, 52);
+            this.contextMenuStrip2.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
+            // 
+            // toolStripMenuItemSeleceAll2
+            // 
+            this.toolStripMenuItemSeleceAll2.Name = "toolStripMenuItemSeleceAll2";
+            this.toolStripMenuItemSeleceAll2.Size = new System.Drawing.Size(142, 24);
+            this.toolStripMenuItemSeleceAll2.Text = "SelectAll";
+            // 
+            // toolStripMenuItemCopy2
+            // 
+            this.toolStripMenuItemCopy2.Name = "toolStripMenuItemCopy2";
+            this.toolStripMenuItemCopy2.Size = new System.Drawing.Size(142, 24);
+            this.toolStripMenuItemCopy2.Text = "Copy";
+            // 
             // SmartValveControl
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1041, 757);
             this.Controls.Add(this.splitContainer4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SmartValveControl";
             this.Text = "SmartValveControl";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SmartValveControl_FormClosing);
@@ -2493,6 +2550,8 @@ namespace SmartValve2Control
             this.splitContainer8.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).EndInit();
             this.splitContainer8.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
+            this.contextMenuStrip2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2679,6 +2738,12 @@ namespace SmartValve2Control
         private Label label12;
         private SplitContainer splitContainer7;
         private SplitContainer splitContainer8;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem toolStripMenuItemSelectAll;
+        private ToolStripMenuItem toolStripMenuItemCopy;
+        private ContextMenuStrip contextMenuStrip2;
+        private ToolStripMenuItem toolStripMenuItemSeleceAll2;
+        private ToolStripMenuItem toolStripMenuItemCopy2;
     }
 }
 
