@@ -504,7 +504,7 @@ namespace SmartValve2Control
                     str_tmp += "[" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "]";
                 }
 
-                tn_show_time = 4;
+                tn_show_time = 10;
                 str_tmp += encoder.GetString(buffer).Replace("\r\n", "\r\n[" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "]");
             }
             else
