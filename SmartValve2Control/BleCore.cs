@@ -56,9 +56,13 @@ namespace SmartValve2Control
         //定义一个委托
         public delegate void eventRun(MsgType type, string str, byte[] data = null);
         public delegate void eventReceive(int receivebytes, byte[] data);
+        public delegate void updateDevice(string devname);
+        public delegate void searchStoped();
         //定义一个事件
         public event eventRun ValueChanged;
         public event eventReceive Receive;
+        public event updateDevice UpdateDevcice;
+        public event searchStoped SearchStoped;
 
         public BleCore(string serviceGuid, string writeCharacteristicGuid, string notifyCharacteristicGuid)
         {
@@ -107,10 +111,13 @@ namespace SmartValve2Control
 
             // register callback for when we see an advertisements
             Watcher.Received += OnAdvertisementReceived;
+            Watcher.Stopped += OnAdvertisementStoped;
 
             // wait 5 seconds to make sure the device is really out of range
             Watcher.SignalStrengthFilter.OutOfRangeTimeout = TimeSpan.FromMilliseconds(5000);
             Watcher.SignalStrengthFilter.SamplingInterval = TimeSpan.FromMilliseconds(2000);
+
+            DeviceList.RemoveRange(0, DeviceList.Count);
 
             // starting watching for advertisements
             Watcher.Start();
@@ -144,7 +151,6 @@ namespace SmartValve2Control
                 Watcher.Received -= OnAdvertisementReceived;
                 Watcher.Stop();
                 Watcher = null;
-                DeviceList.RemoveRange(0, DeviceList.Count);
                 //Console.WriteLine("停止发现设备..");
             }
         }
@@ -162,13 +168,19 @@ namespace SmartValve2Control
                 ValueChanged(MsgType.NotifyTxt, "发现设备:" + args.Name);
                 Matching(args.Id);
             }
-            else if(CurrentDeviceName != null && args.Name.EndsWith(CurrentDeviceName))
+            else if (CurrentDeviceName != null && args.Name.EndsWith(CurrentDeviceName))
             {
                 ValueChanged(MsgType.NotifyTxt, "发现设备:" + args.Name);
                 Matching(args.Id);
             }
 
+            //UpdateDevcice?.Invoke(args);
 
+        }
+
+        private void OnAdvertisementStoped(Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementWatcher watcher, Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementWatcherStoppedEventArgs eventArgs)
+        {
+            SearchStoped?.Invoke();
         }
 
         private void OnAdvertisementReceived(Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementWatcher watcher, Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementReceivedEventArgs eventArgs)
@@ -185,13 +197,14 @@ namespace SmartValve2Control
                     {
                         BluetoothLEDevice currentDevice = asyncInfo.GetResults();
 
-                        if (currentDevice.Name == CurrentDeviceName)
+                        //if (currentDevice.Name == CurrentDeviceName)
                         {
                             if (DeviceList.FindIndex((x) => { return x.Name.Equals(currentDevice.Name); }) < 0)
                             {
-                                CurrentDevice = CurrentDevice;
+                                CurrentDevice = currentDevice;
                                 this.DeviceList.Add(CurrentDevice);
-                                Matching(currentDevice.DeviceId);
+                                //Matching(currentDevice.DeviceId);
+                                UpdateDevcice?.Invoke(currentDevice.Name);
                             }
                         }
                         //if (DeviceList.FindIndex((x) => { return x.Name.Equals(currentDevice.Name); }) < 0)
@@ -259,7 +272,6 @@ namespace SmartValve2Control
 
         private async Task Matching(string Id)
         {
-
             try
             {
                 BluetoothLEDevice.FromIdAsync(Id).Completed = async (asyncInfo, asyncStatus) =>
@@ -269,8 +281,8 @@ namespace SmartValve2Control
                         BluetoothLEDevice bleDevice = asyncInfo.GetResults();
                         //在当前设备变量中保存检测到的设备。
                         CurrentDevice = bleDevice;
-                        await Connect();
-
+                        //await Connect();
+                        FindService();
                     }
                 };
             }
@@ -278,9 +290,82 @@ namespace SmartValve2Control
             {
                 string msg = "没有发现设备" + e.ToString();
                 ValueChanged(MsgType.NotifyTxt, msg);
-                StartBleDeviceWatcher();
+                //StartBleDeviceWatcher();
+                ValueChanged(MsgType.NotifyStates, "No Found");
             }
+        }
 
+        /// <summary>
+        /// 获取特性
+        /// </summary>
+        private void FindCharacteristic(GattDeviceService gattDeviceService)
+        {
+            this.CurrentService = gattDeviceService;
+            this.CurrentService.GetCharacteristicsAsync().Completed = (asyncInfo, asyncStatus) =>
+            {
+                if (asyncStatus == AsyncStatus.Completed)
+                {
+                    var services = asyncInfo.GetResults().Characteristics;
+                    foreach (GattCharacteristic c in services)
+                    {
+                        //this.CharacteristicAdded?.Invoke(c);
+                        //Matching(string Id);
+                        ValueChanged(MsgType.NotifyTxt, "GattCharacteristic uuid=" + c.Uuid.ToString());
+                        if(c.Uuid.ToString() == WriteCharacteristicGuid)
+                        {
+                            CurrentWriteCharacteristic = c;
+                        }
+                        if (c.Uuid.ToString() == NotifyCharacteristicGuid)
+                        {
+                            CurrentNotifyCharacteristic = c;
+                            CurrentNotifyCharacteristic.ProtectionLevel = GattProtectionLevel.Plain;
+                            CurrentNotifyCharacteristic.ValueChanged += Characteristic_ValueChanged;
+                            EnableNotifications(CurrentNotifyCharacteristic);
+                        }
+                    }
+
+                }
+            };
+        }
+
+        /// 获取蓝牙服务
+        /// </summary>
+        public void FindService()
+        {
+            this.CurrentDevice.GetGattServicesAsync().Completed = (asyncInfo, asyncStatus) =>
+            {
+                if (asyncStatus == AsyncStatus.Completed)
+                {
+                    var services = asyncInfo.GetResults().Services;
+                    ValueChanged(MsgType.NotifyTxt, "GattServices size=" + services.Count);
+                    foreach (GattDeviceService ser in services)
+                    {
+                        ValueChanged(MsgType.NotifyTxt, "GattServices uuid=" + ser.Uuid.ToString());
+                        FindCharacteristic(ser);
+                    }
+                    //CharacteristicFinish?.Invoke(services.Count);
+                }
+            };
+
+        }
+
+        public void Connect(string devname)
+        {
+            string id = null;
+            foreach(BluetoothLEDevice dev in DeviceList)
+            {
+                if(dev.Name == devname)
+                {
+                    id = dev.DeviceId;
+                    ValueChanged(MsgType.NotifyTxt, "device id=" + id);
+                    break;
+                }
+            }
+            if(id != null)
+            {
+                Matching(id);
+            }
+            
         }
 
         private async Task Connect()
@@ -476,9 +561,6 @@ namespace SmartValve2Control
         /// <returns></returns>
         public async Task EnableNotifications(GattCharacteristic characteristic)
         {
-            //string msg = "收通知对象=" + CurrentDevice.ConnectionStatus;
-            //ValueChanged(MsgType.NotifyTxt, msg);
-            Delay(2000);
             try
             {
                 characteristic.WriteClientCharacteristicConfigurationDescriptorAsync(CHARACTERISTIC_NOTIFICATION_TYPE).Completed = async (asyncInfo, asyncStatus) =>
@@ -488,18 +570,17 @@ namespace SmartValve2Control
                         GattCommunicationStatus status = asyncInfo.GetResults();
                         string msg = "接收通知对象=" + status;
                         ValueChanged(MsgType.NotifyTxt, msg);
-                        if (status == GattCommunicationStatus.Unreachable)
+
+                        if(status == GattCommunicationStatus.Success)
                         {
-                            msg = "设备不可用";
-                            ValueChanged(MsgType.NotifyTxt, msg);
-                            if (CurrentNotifyCharacteristic != null && !asyncLock)
-                            {
-                                await EnableNotifications(CurrentNotifyCharacteristic);
-                            }
+                            msg = "" + status;
+                            ValueChanged(MsgType.NotifyGattCommunication, msg);
                         }
-                        asyncLock = false;
-                        msg = "" + status;
-                        ValueChanged(MsgType.NotifyGattCommunication, msg);
+                        else
+                        {
+                            msg = "FAILE";
+                            ValueChanged(MsgType.NotifyGattCommunication, msg);
+                        }
                     }
                 };
             }

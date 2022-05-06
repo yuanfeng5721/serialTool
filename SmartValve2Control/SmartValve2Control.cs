@@ -116,9 +116,11 @@ namespace SmartValve2Control
             bluetooth = new BleCore(_serviceGuid, _writeCharacteristicGuid, _notifyCharacteristicGuid);
             bluetooth.ValueChanged += Bluetooth_ValueChanged;
             bluetooth.Receive += BluetoothReceive;
+            bluetooth.UpdateDevcice += BleItemAdd;
+            bluetooth.SearchStoped += BleSearchStoped;
 
             //
-            comboBoxBleDevice.Text = "ZLG BLE";//"ZLG BLE"
+            //comboBoxBleDevice.Text = "ZLG BLE";//"ZLG BLE"
             _isBleDeviceConnected = false;
             //t_bluecheck = new Thread(new ThreadStart(bluetooth_connect_check));
         }
@@ -977,21 +979,21 @@ namespace SmartValve2Control
             if (buttonBleSearch.Text == "Search")
             {
                 comboBoxBleDevice.Items.Clear();
-                comboBoxBleDevice.Text = null;
-                bluetooth.CurrentDeviceName = "ZLG BLE";
-                //this.BeginInvoke(new MethodInvoker(delegate
-                //{
-                //    blectl.BleSearch(true);
-                //}));
-                bluetooth.StartBleDeviceWatcher();
+                comboBoxBleDevice.Text = null;            
+                //bluetooth.CurrentDeviceName = "ZLG BLE";
+                this.BeginInvoke(new MethodInvoker(delegate
+                {
+                    bluetooth.StartBleDeviceWatcher2();
+                }));
+                //bluetooth.StartBleDeviceWatcher();
                 buttonBleSearch.Text = "Stop";
             }
             else if (buttonBleSearch.Text == "Stop")
             {
-                //this.BeginInvoke(new MethodInvoker(delegate
-                //{
-                //    blectl.BleSearch(false);
-                //}));
+                this.BeginInvoke(new MethodInvoker(delegate
+                {
+                    bluetooth.StopBleDeviceWatcher2();
+                }));
                 buttonBleSearch.Text = "Search";
             }
 
@@ -1029,11 +1031,16 @@ namespace SmartValve2Control
         {
             if (onoff)
             {
-                bluetooth.CurrentDeviceName = comboBoxBleDevice.Text;//"ZLG BLE";
-                bluetooth.StartBleDeviceWatcher2();
-                comboBoxBleDevice.Enabled = false;
-                //buttonConnect.Enabled = true;
-                //_isBleDeviceConnected = true;
+                RunAsync(() =>
+                {
+                    bluetooth.CurrentDeviceName = comboBoxBleDevice.Text;//"ZLG BLE";
+                    bluetooth.StopBleDeviceWatcher2();
+                    bluetooth.Connect(comboBoxBleDevice.Text);
+                    comboBoxBleDevice.Enabled = false;
+                    buttonBleSearch.Enabled = false;
+                    //buttonConnect.Enabled = true;
+                    //_isBleDeviceConnected = true;
+                });
             }
             else
             {
@@ -1042,13 +1049,18 @@ namespace SmartValve2Control
                     byte[] cmd = System.Text.Encoding.ASCII.GetBytes("BLE DISCONNECT\r\n");
                     bluetooth.Write(cmd);
                     Delay(500);
-                    bluetooth.StopBleDeviceWatcher2();
-                    Delay(5000);
+                    bluetooth.Write(cmd);
+                    Delay(500);
+                    //bluetooth.StopBleDeviceWatcher2();
+                    //Delay(1000);
                     //bluetooth.StopBleDeviceWatcher2();
                     bluetooth.Dispose();
                     comboBoxBleDevice.Enabled = true;
                     buttonConnect.Enabled = true;
                     _isBleDeviceConnected = false;
+                    buttonBleSearch.Enabled = true;
+                    comboBoxBleDevice.Items.Clear();
+                    comboBoxBleDevice.Text = null;
                 }); 
             }
         }
@@ -1058,7 +1070,6 @@ namespace SmartValve2Control
             if(!_isBleDeviceConnected)
             {
                 bluetoothCheck = false;
-                //t_bluecheck.Abort();
                 buttonConnect.Text = "Connect";
                 bluetoothOperate(false);
             }
@@ -1068,29 +1079,33 @@ namespace SmartValve2Control
         {
             if (buttonConnect.Text == "Connect")
             {
-                _isBleDeviceConnected = false;
-                buttonConnect.Enabled = false;
-                buttonConnect.Text = "Disconnect";
-                ble_timer.Interval = 1000 * 40 * 1;
-                ble_timer.AutoReset = false;
-                ble_timer.Elapsed += bluetoothCheckStates;
-                ble_timer.Start();
-                //this.BeginInvoke(new MethodInvoker(delegate
-                //{
-                //    blectl.BleConnect(comboBoxBleDevice.Text);
-                //    buttonConnect.Enabled = true;
-                //}));
-                //buttonBleSearch.Enabled = false;
-                //bluetooth.CurrentDeviceName = comboBoxBleDevice.Text;//"ZLG BLE";
-                //bluetooth.StartBleDeviceWatcher();
-                //comboBoxBleDevice.Enabled = false;
-                //buttonConnect.Enabled = true;
-                //_isBleDeviceConnected = true;
-                bluetoothOperate(true);
+                if(comboBoxBleDevice.Items.Count > 0)
+                {
+                    _isBleDeviceConnected = false;
+                    //                buttonConnect.Enabled = false;
+                    buttonConnect.Text = "Disconnect";
+                    //                ble_timer.Interval = 1000 * 40 * 1;
+                    //                ble_timer.AutoReset = false;
+                    //                ble_timer.Elapsed += bluetoothCheckStates;
+                    //                ble_timer.Start();
+                    //this.BeginInvoke(new MethodInvoker(delegate
+                    //{
+                    //    bluetooth.StopBleDeviceWatcher2();
+                    //    bluetooth.Connect(comboBoxBleDevice.Text);
+                    //    buttonConnect.Enabled = true;
+                    //}));
+                    //buttonBleSearch.Enabled = false;
+                    //bluetooth.CurrentDeviceName = comboBoxBleDevice.Text;//"ZLG BLE";
+                    //bluetooth.StartBleDeviceWatcher();
+                    //comboBoxBleDevice.Enabled = false;
+                    //buttonConnect.Enabled = true;
+                    //_isBleDeviceConnected = true;
+                    bluetoothOperate(true);
+                }
             }
             else
             {
-                buttonConnect.Enabled = false;
+//                buttonConnect.Enabled = false;
                 buttonConnect.Text = "Connect";
                 //this.BeginInvoke(new MethodInvoker(delegate
                 //{
@@ -1117,9 +1132,19 @@ namespace SmartValve2Control
             /* 先清空端口下拉列表 */
             //comboBoxBleDevice.Items.Clear();
             //for (int i = 0; i < mystring.Length; i++)
+            state_printf(name, Color.Black);
             comboBoxBleDevice.Items.Add(name); // 往下拉列表中添加端口号
 
-            comboBoxBleDevice.SelectedIndex = 0; // 默认选中的是第一个端口（小的端口）
+            if(comboBoxBleDevice.Items.Count == 1)
+            {
+                comboBoxBleDevice.SelectedIndex = 0; // 默认选中的是第一个端口（小的端口）
+            }    
+        }
+
+        public void BleSearchStoped()
+        {
+            buttonBleSearch.Text = "Search";
+            state_printf("Search Stoped", Color.Black);
         }
 
         private void bluetooth_connect_check()
@@ -1149,20 +1174,13 @@ namespace SmartValve2Control
                         t_bluecheck = null;
                         t_bluecheck = new Thread(new ThreadStart(bluetooth_connect_check));
                         t_bluecheck.Start();
-                        //byte[] cmd = System.Text.Encoding.ASCII.GetBytes("BLE CONNECT\r\n");
-                        //bluetooth.Write(cmd);
-                        ////Thread.Sleep(500);
-                        //bluetooth.Write(cmd);
-                        ////Thread.Sleep(500);
-                        ////bluetooth.Write(cmd);
                     }
                     else if (str == "Successed")
                     {
                         str = "BLE connected OK!";
                         bluetoothCheck = false;
-                        //t_bluecheck.Abort();
-                        Delay(500);
-                        ble_timer.Stop();
+                        //Delay(500);
+                        //ble_timer.Stop();
                         state_printf(str, Color.Green);
                         buttonConnect.Enabled = true;
                         _isBleDeviceConnected = true;
@@ -1171,11 +1189,14 @@ namespace SmartValve2Control
                     {
                         buttonConnect.Enabled = false;
                         buttonConnect.Text = "Connect";
-                        bluetooth.StopBleDeviceWatcher();
+                        //bluetooth.StopBleDeviceWatcher2();
                         bluetooth.Dispose();
                         comboBoxBleDevice.Enabled = true;
                         buttonConnect.Enabled = true;
                         _isBleDeviceConnected = false;
+                        buttonBleSearch.Enabled = true;
+                        comboBoxBleDevice.Items.Clear();
+                        comboBoxBleDevice.Text = null;
                     }
                 }
                 else if (type == MsgType.NotifyStates)
@@ -1184,6 +1205,10 @@ namespace SmartValve2Control
                     {
                         String rtl = "BLE Disconnected!";
                         state_printf(rtl, Color.Red);
+                    }
+                    else if (str == "No Found")
+                    {
+
                     }
                 }
                 else
@@ -1249,7 +1274,6 @@ namespace SmartValve2Control
             {
                 this.BeginInvoke((EventHandler)(delegate
                 {
-                    //group_send_stop();
                     serial_send_stop();
 
                     MessageBoxEx.Show(this, ex.Message, "消息", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -1381,122 +1405,4 @@ namespace SmartValve2Control
             return s1.CompareTo(s2);
         }
     }
-
-    //public class BleControl
-    //{
-    //    private static SmartValveControl smartValve2control;
-    //    private static BleCore bleCore = null;
-    //    delegate void VoidAction();
-    //    private static ArrayList bledevice;
-    //    private static BluetoothLEDevice dev;
-    //    int item = 0;
-
-    //    public BleControl(SmartValveControl svc)
-    //    {
-    //        smartValve2control = svc;
-    //        bleCore = new BleCore();
-    //        bledevice = new ArrayList();
-    //        bleCore.DeviceWatcherChanged += DeviceWatcherChanged;
-    //        bleCore.CharacteristicAdded += CharacteristicAdded;
-    //        bleCore.CharacteristicFinish += CharacteristicFinish;
-    //        bleCore.Recdate += Recdata;
-    //    }
-
-    //    private static List<GattCharacteristic> characteristics = new List<GattCharacteristic>();
-
-    //    public void BleSearch(bool onoff)
-    //    {
-    //        if(onoff)
-    //        {
-    //            bleCore.StartBleDeviceWatcher();
-    //        }
-    //        else
-    //        {
-    //            bleCore.StopBleDeviceWatcher();
-    //            //bleCore = null;
-    //        }
-    //    }
-
-    //    public void BleConnect(String DeviceName)
-    //    {
-    //        //foreach(BluetoothLEDevice currentDevice in bledevice)
-    //        {
-    //            //if(currentDevice.Name == DeviceName)
-    //            if(dev.Name == DeviceName)
-    //            {
-    //                //ConnectDevice(currentDevice);
-    //                ConnectDevice(dev);
-    //                //break;
-    //            }
-    //        }
-
-    //    }
-
-    //    public void BleDisconnect()
-    //    {
-    //        characteristics.Clear();
-    //        bleCore.StopBleDeviceWatcher();
-    //        bleCore.Dispose();
-    //    }
-
-    //    private static void printString(string info)
-    //    {
-    //        smartValve2control.state_printf(info, Color.Black);
-    //    }
-
-    //    private static void CharacteristicFinish(int size)
-    //    {
-    //        if (size <= 0)
-    //        {
-    //            Console.WriteLine("设备未连上");
-    //            return;
-    //        }
-    //        else
-    //        {
-
-    //        }
-    //    }
-
-    //    private static void Recdata(GattCharacteristic sender, byte[] data)
-    //    {
-    //        string str = BitConverter.ToString(data);
-    //        Console.WriteLine(sender.Uuid + "             " + str);
-    //    }
-
-    //    private static void CharacteristicAdded(GattCharacteristic gatt)
-    //    {
-    //        Console.WriteLine(
-    //            "handle:[0x{0}]  char properties:[{1}]  UUID:[{2}]",
-    //            gatt.AttributeHandle.ToString("X4"),
-    //            gatt.CharacteristicProperties.ToString(),
-    //            gatt.Uuid);
-
-    //        characteristics.Add(gatt);
-    //    }
-
-    //    private static void DeviceWatcherChanged(BluetoothLEDevice currentDevice)
-    //    {
-    //        byte[] _Bytes1 = BitConverter.GetBytes(currentDevice.BluetoothAddress);
-    //        Array.Reverse(_Bytes1);
-    //        string address = BitConverter.ToString(_Bytes1, 2, 6).Replace('-', ':').ToLower();
-    //        Console.WriteLine("发现设备：<" + currentDevice.Name + ">  address:<" + address + ">");
-    //        if(currentDevice.Name == "ZLG BLE")
-    //        {
-    //            dev = currentDevice;
-    //            smartValve2control.BleItemAdd(currentDevice.Name);
-    //        }
-    //        //bledevice.Add(currentDevice);
-    //        //smartValve2control.BleItemAdd(currentDevice.Name);
-    //        //指定一个对象，使用下面方法去连接设备
-    //        //ConnectDevice(currentDevice);
-    //    }
-
-    //    private static void ConnectDevice(BluetoothLEDevice Device)
-    //    {
-    //        characteristics.Clear();
-    //        bleCore.StopBleDeviceWatcher();
-    //        bleCore.StartMatching(Device);
-    //        bleCore.FindService();
-    //    }
-    //}
 }
