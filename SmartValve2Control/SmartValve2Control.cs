@@ -38,7 +38,7 @@ namespace SmartValve2Control
         private ConcurrentQueue<byte[]> serial_recv_buffer = new ConcurrentQueue<byte[]>();
 
         Encoding encoder = Encoding.Default;
-        const int cmdlistcount = 25;
+        const int cmdlistcount = 38;
 
         TextBox[] TextBox_Cmds = new TextBox[cmdlistcount];
         Button[] Button_Cmds = new Button[cmdlistcount];
@@ -1035,6 +1035,7 @@ namespace SmartValve2Control
                 {
                     bluetooth.CurrentDeviceName = comboBoxBleDevice.Text;//"ZLG BLE";
                     bluetooth.StopBleDeviceWatcher2();
+                    BleSearchStoped();
                     bluetooth.Connect(comboBoxBleDevice.Text);
                     comboBoxBleDevice.Enabled = false;
                     buttonBleSearch.Enabled = false;
@@ -1055,6 +1056,7 @@ namespace SmartValve2Control
                     //Delay(1000);
                     //bluetooth.StopBleDeviceWatcher2();
                     bluetooth.Dispose();
+                    Delay(2000);
                     comboBoxBleDevice.Enabled = true;
                     buttonConnect.Enabled = true;
                     _isBleDeviceConnected = false;
@@ -1105,7 +1107,7 @@ namespace SmartValve2Control
             }
             else
             {
-//                buttonConnect.Enabled = false;
+                buttonConnect.Enabled = false;
                 buttonConnect.Text = "Connect";
                 //this.BeginInvoke(new MethodInvoker(delegate
                 //{
@@ -1197,6 +1199,20 @@ namespace SmartValve2Control
                         buttonBleSearch.Enabled = true;
                         comboBoxBleDevice.Items.Clear();
                         comboBoxBleDevice.Text = null;
+                    }
+                    else if(str == "FAILE")
+                    {
+                        buttonConnect.Enabled = false;
+                        buttonConnect.Text = "Connect";
+                        //bluetooth.StopBleDeviceWatcher2();
+                        bluetooth.Dispose();
+                        comboBoxBleDevice.Enabled = true;
+                        buttonConnect.Enabled = true;
+                        _isBleDeviceConnected = false;
+                        buttonBleSearch.Enabled = true;
+                        comboBoxBleDevice.Items.Clear();
+                        comboBoxBleDevice.Text = null;
+                        state_printf("Connect faile, please try it!", Color.Red);
                     }
                 }
                 else if (type == MsgType.NotifyStates)
@@ -1298,6 +1314,10 @@ namespace SmartValve2Control
                 case "toolStripMenuItemSeleceAll2":
                     richTextBoxState.Focus();
                     richTextBoxState.SelectAll();
+                    break;
+                case "toolStripMenuAbout":
+                    //MessageBox.Show(this, "Software Version: V1.0.1", "About", MessageBoxButtons.OK);
+                    MessageBox.Show("Software Version: V1.0.1", "About");
                     break;
             }
         }

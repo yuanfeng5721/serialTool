@@ -148,8 +148,9 @@ namespace SmartValve2Control
         {
             if (Watcher != null)
             {
-                Watcher.Received -= OnAdvertisementReceived;
                 Watcher.Stop();
+                Watcher.Received -= OnAdvertisementReceived;
+                Watcher.Stopped -= OnAdvertisementStoped;      
                 Watcher = null;
                 //Console.WriteLine("停止发现设备..");
             }
